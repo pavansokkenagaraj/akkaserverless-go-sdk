@@ -18,8 +18,8 @@ package eventsourced
 import (
 	"time"
 
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/protocol"
 	"github.com/golang/protobuf/proto"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/protocol"
 )
 
 // Entity describes an event sourced entity. It is used to be registered as

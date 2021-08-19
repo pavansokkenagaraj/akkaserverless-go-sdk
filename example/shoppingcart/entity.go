@@ -19,8 +19,8 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/eventsourced"
-	domain "github.com/pavansokkenagaraj/akkaserverless-go-sdk/example/shoppingcart/persistence"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/eventsourced"
+	domain "github.com/lightbend/akkaserverless-go-sdk/example/shoppingcart/persistence"
 	"github.com/golang/protobuf/proto"
 	"github.com/golang/protobuf/ptypes/empty"
 )

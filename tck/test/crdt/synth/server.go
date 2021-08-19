@@ -21,10 +21,10 @@ import (
 	"net"
 	"testing"
 
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/crdt"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/protocol"
-	crdt2 "github.com/pavansokkenagaraj/akkaserverless-go-sdk/tck/crdt"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/crdt"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/protocol"
+	crdt2 "github.com/lightbend/akkaserverless-go-sdk/tck/crdt"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/test/bufconn"
 )

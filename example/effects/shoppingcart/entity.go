@@ -1,10 +1,10 @@
 package shoppingcart
 
 import (
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/crdt"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/encoding"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/protocol"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/example/crdt_shoppingcart/shoppingcart"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/crdt"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/encoding"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/protocol"
+	"github.com/lightbend/akkaserverless-go-sdk/example/crdt_shoppingcart/shoppingcart"
 )
 
 type ShoppingCart struct {

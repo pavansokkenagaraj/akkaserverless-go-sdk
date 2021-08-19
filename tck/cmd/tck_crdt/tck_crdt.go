@@ -18,10 +18,10 @@ package main
 import (
 	"log"
 
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/crdt"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/protocol"
-	tck "github.com/pavansokkenagaraj/akkaserverless-go-sdk/tck/crdt"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/crdt"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/protocol"
+	tck "github.com/lightbend/akkaserverless-go-sdk/tck/crdt"
 )
 
 func main() {

@@ -25,7 +25,7 @@
 package eventlogeventing
 
 import (
-	_ "github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless"
+	_ "github.com/lightbend/akkaserverless-go-sdk/akkaserverless"
 	proto "github.com/golang/protobuf/proto"
 	any "github.com/golang/protobuf/ptypes/any"
 	empty "github.com/golang/protobuf/ptypes/empty"

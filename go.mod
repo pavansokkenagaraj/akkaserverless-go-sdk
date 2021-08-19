@@ -1,4 +1,4 @@
-module github.com/pavansokkenagaraj/akkaserverless-go-sdk
+module github.com/lightbend/akkaserverless-go-sdk
 
 go 1.14
 

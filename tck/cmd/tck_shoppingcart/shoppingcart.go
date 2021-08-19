@@ -19,10 +19,10 @@ package main
 import (
 	"log"
 
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/eventsourced"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/protocol"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/example/shoppingcart"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/eventsourced"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/protocol"
+	"github.com/lightbend/akkaserverless-go-sdk/example/shoppingcart"
 )
 
 // main creates a CloudState instance and registers the ShoppingCart

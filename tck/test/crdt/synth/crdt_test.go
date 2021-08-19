@@ -23,8 +23,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/protocol"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/example/crdt_shoppingcart/shoppingcart"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/protocol"
+	"github.com/lightbend/akkaserverless-go-sdk/example/crdt_shoppingcart/shoppingcart"
 )
 
 // TestCRDT runs the TCK for the CRDT state model.

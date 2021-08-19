@@ -6,10 +6,10 @@ import (
 	"net"
 	"testing"
 
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/eventsourced"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/protocol"
-	shoppingcart2 "github.com/pavansokkenagaraj/akkaserverless-go-sdk/example/shoppingcart"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/eventsourced"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/protocol"
+	shoppingcart2 "github.com/lightbend/akkaserverless-go-sdk/example/shoppingcart"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/test/bufconn"
 )

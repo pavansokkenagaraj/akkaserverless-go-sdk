@@ -19,8 +19,8 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/entity"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/protocol"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/entity"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/protocol"
 )
 
 // runner runs a stream with the help of a context.

@@ -16,8 +16,8 @@
 package crdt
 
 import (
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/encoding"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/entity"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/encoding"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/entity"
 	"github.com/golang/protobuf/proto"
 	"github.com/golang/protobuf/ptypes/any"
 )

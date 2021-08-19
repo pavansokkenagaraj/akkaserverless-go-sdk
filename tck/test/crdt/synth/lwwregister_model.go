@@ -16,7 +16,7 @@
 package synth
 
 import (
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/tck/crdt"
+	"github.com/lightbend/akkaserverless-go-sdk/tck/crdt"
 	"github.com/golang/protobuf/proto"
 )
 

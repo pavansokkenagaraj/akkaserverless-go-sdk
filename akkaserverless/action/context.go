@@ -18,8 +18,8 @@ package action
 import (
 	"context"
 
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/entity"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/protocol"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/entity"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/protocol"
 	"github.com/golang/protobuf/ptypes/any"
 )
 

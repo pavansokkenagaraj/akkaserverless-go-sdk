@@ -18,7 +18,7 @@ package crdt
 import (
 	"fmt"
 
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/entity"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/entity"
 )
 
 // A Vote is a CRDT which allows nodes to vote on a condition. It’s similar

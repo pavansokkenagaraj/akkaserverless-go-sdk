@@ -22,13 +22,13 @@ import (
 	"net"
 	"os"
 
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/action"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/crdt"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/discovery"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/entity"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/eventsourced"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/protocol"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/value"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/action"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/crdt"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/discovery"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/entity"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/eventsourced"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/protocol"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/value"
 	"google.golang.org/grpc"
 )
 

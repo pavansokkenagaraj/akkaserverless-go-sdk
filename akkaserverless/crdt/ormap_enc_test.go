@@ -3,7 +3,7 @@ package crdt
 import (
 	"testing"
 
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/encoding"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/encoding"
 )
 
 func BenchmarkORMapEncoding(b *testing.B) {

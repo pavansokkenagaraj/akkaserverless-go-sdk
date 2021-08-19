@@ -18,7 +18,7 @@ package crdt
 import (
 	"fmt"
 
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/entity"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/entity"
 )
 
 // GCounter, or Grow-only Counter, is a counter that can only be incremented.

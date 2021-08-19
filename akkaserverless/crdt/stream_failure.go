@@ -16,8 +16,8 @@
 package crdt
 
 import (
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/entity"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/protocol"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/entity"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/protocol"
 )
 
 func sendFailure(e error, stream entity.Crdt_HandleServer) error {

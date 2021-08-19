@@ -19,9 +19,9 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/encoding"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/eventsourced"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/protocol"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/encoding"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/eventsourced"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/protocol"
 	"github.com/golang/protobuf/proto"
 )
 

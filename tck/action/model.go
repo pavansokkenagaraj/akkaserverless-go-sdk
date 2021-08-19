@@ -18,9 +18,9 @@ package action
 import (
 	"errors"
 
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/action"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/encoding"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/protocol"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/action"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/encoding"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/protocol"
 	"github.com/golang/protobuf/proto"
 )
 

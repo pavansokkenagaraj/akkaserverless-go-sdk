@@ -18,7 +18,7 @@ package crdt
 import (
 	"fmt"
 
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/entity"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/entity"
 )
 
 // A Flag is a boolean value that starts as false, and can be set to true.

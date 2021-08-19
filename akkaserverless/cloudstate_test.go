@@ -24,8 +24,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/discovery"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/protocol"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/discovery"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/protocol"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 )
 

@@ -22,8 +22,8 @@ import (
 	"log"
 	"sync"
 
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/entity"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/protocol"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/entity"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/protocol"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )

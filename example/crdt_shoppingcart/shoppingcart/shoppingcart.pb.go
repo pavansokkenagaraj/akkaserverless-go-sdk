@@ -7,7 +7,7 @@
 package shoppingcart
 
 import (
-	_ "github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless"
+	_ "github.com/lightbend/akkaserverless-go-sdk/akkaserverless"
 	proto "github.com/golang/protobuf/proto"
 	empty "github.com/golang/protobuf/ptypes/empty"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"

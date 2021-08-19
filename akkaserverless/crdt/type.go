@@ -15,7 +15,7 @@
 
 package crdt
 
-import "github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/entity"
+import "github.com/lightbend/akkaserverless-go-sdk/akkaserverless/entity"
 
 type CRDT interface {
 	Delta() *entity.CrdtDelta
