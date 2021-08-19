@@ -18,9 +18,9 @@ package crdt
 import (
 	"testing"
 
+	"github.com/golang/protobuf/ptypes/any"
 	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/encoding"
 	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/entity"
-	"github.com/golang/protobuf/ptypes/any"
 )
 
 func TestORMap(t *testing.T) {

@@ -18,8 +18,8 @@ package crdt
 import (
 	"fmt"
 
-	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/entity"
 	"github.com/golang/protobuf/ptypes/any"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/entity"
 )
 
 // ORSet, or Observed-Removed Set, is a set that can have items both added

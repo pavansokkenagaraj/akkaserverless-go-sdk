@@ -3,10 +3,10 @@ package shoppingcart
 import (
 	"errors"
 
-	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/crdt"
-	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/encoding"
 	"github.com/golang/protobuf/proto"
 	"github.com/golang/protobuf/ptypes/any"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/crdt"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/encoding"
 )
 
 type ShoppingCart struct {

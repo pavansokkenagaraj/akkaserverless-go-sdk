@@ -18,10 +18,10 @@ package action
 import (
 	"errors"
 
+	"github.com/golang/protobuf/proto"
 	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/action"
 	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/encoding"
 	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/protocol"
-	"github.com/golang/protobuf/proto"
 )
 
 type TestModel struct {

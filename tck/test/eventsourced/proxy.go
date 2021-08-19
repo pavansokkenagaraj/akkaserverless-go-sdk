@@ -4,10 +4,10 @@ import (
 	"context"
 	"testing"
 
+	"github.com/golang/protobuf/proto"
 	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/encoding"
 	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/entity"
 	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/protocol"
-	"github.com/golang/protobuf/proto"
 )
 
 type command struct {

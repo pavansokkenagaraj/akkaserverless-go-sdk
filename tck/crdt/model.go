@@ -20,11 +20,11 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/crdt"
-	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/encoding"
 	"github.com/golang/protobuf/proto"
 	"github.com/golang/protobuf/ptypes/any"
 	"github.com/golang/protobuf/ptypes/empty"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/crdt"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/encoding"
 )
 
 type TestModel struct {

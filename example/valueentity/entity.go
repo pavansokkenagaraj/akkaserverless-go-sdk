@@ -5,13 +5,13 @@ import (
 	"fmt"
 	"sort"
 
+	"github.com/golang/protobuf/proto"
+	"github.com/golang/protobuf/ptypes/any"
+	"github.com/golang/protobuf/ptypes/empty"
 	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/encoding"
 	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/protocol"
 	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/value"
 	domain "github.com/lightbend/akkaserverless-go-sdk/example/valueentity/persistence"
-	"github.com/golang/protobuf/proto"
-	"github.com/golang/protobuf/ptypes/any"
-	"github.com/golang/protobuf/ptypes/empty"
 )
 
 // A Cloudstate event sourced entity implementing a shopping cart.

@@ -30,9 +30,9 @@
 package valueentity
 
 import (
-	_ "github.com/lightbend/akkaserverless-go-sdk/akkaserverless"
 	proto "github.com/golang/protobuf/proto"
 	empty "github.com/golang/protobuf/ptypes/empty"
+	_ "github.com/lightbend/akkaserverless-go-sdk/akkaserverless"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	_ "google.golang.org/genproto/googleapis/api/httpbody"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"

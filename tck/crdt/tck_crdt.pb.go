@@ -25,9 +25,9 @@
 package crdt
 
 import (
-	_ "github.com/lightbend/akkaserverless-go-sdk/akkaserverless"
 	proto "github.com/golang/protobuf/proto"
 	any "github.com/golang/protobuf/ptypes/any"
+	_ "github.com/lightbend/akkaserverless-go-sdk/akkaserverless"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"

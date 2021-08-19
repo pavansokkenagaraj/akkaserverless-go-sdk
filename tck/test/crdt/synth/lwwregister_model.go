@@ -16,8 +16,8 @@
 package synth
 
 import (
-	"github.com/lightbend/akkaserverless-go-sdk/tck/crdt"
 	"github.com/golang/protobuf/proto"
+	"github.com/lightbend/akkaserverless-go-sdk/tck/crdt"
 )
 
 func lwwRegisterRequest(messages ...proto.Message) *crdt.LWWRegisterRequest {

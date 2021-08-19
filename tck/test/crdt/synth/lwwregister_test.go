@@ -21,10 +21,10 @@ import (
 	"testing"
 	"time"
 
+	"github.com/golang/protobuf/ptypes/any"
 	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/encoding"
 	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/entity"
 	"github.com/lightbend/akkaserverless-go-sdk/tck/crdt"
-	"github.com/golang/protobuf/ptypes/any"
 )
 
 func TestCRDTLWWRegister(t *testing.T) {

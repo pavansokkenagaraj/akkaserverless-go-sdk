@@ -128,10 +128,10 @@ func (s *EntityDiscoveryServer) RegisterEventSourcedEntity(entity *eventsourced.
 		return fmt.Errorf("failed to resolve FileDescriptor for DescriptorConfig: %+v: %w", config, err)
 	}
 	e := &protocol.Component{
-		ComponentType:    protocol.EventSourcedEntities,
+		ComponentType: protocol.EventSourcedEntities,
 		ServiceName:   entity.ServiceName.String(),
 	}
-	entitySettings:=  &protocol.Component_Entity{
+	entitySettings := &protocol.Component_Entity{
 		Entity: &protocol.EntitySettings{
 			EntityType: entity.PersistenceID,
 		},
@@ -152,11 +152,11 @@ func (s *EntityDiscoveryServer) RegisterCRDTEntity(entity *crdt.Entity, config p
 		return fmt.Errorf("failed to resolveFileDescriptor for DescriptorConfig: %+v: %w", config, err)
 	}
 	e := &protocol.Component{
-		ComponentType:  protocol.CRDT,
-		ServiceName: entity.ServiceName.String(),
+		ComponentType: protocol.CRDT,
+		ServiceName:   entity.ServiceName.String(),
 	}
 
-	entitySettings:=  &protocol.Component_Entity{
+	entitySettings := &protocol.Component_Entity{
 		Entity: &protocol.EntitySettings{
 			// TODO: as per https://github.com/cloudstateio/go-support/pull/67#issuecomment-749838999 this is temporary.
 			EntityType: entity.ServiceName.String(),
@@ -178,8 +178,8 @@ func (s *EntityDiscoveryServer) RegisterActionEntity(entity *action.Entity, conf
 		return fmt.Errorf("failed to resolveFileDescriptor for DescriptorConfig: %+v: %w", config, err)
 	}
 	s.entitySpec.Components = append(s.entitySpec.Components, &protocol.Component{
-		ComponentType:  protocol.Action,
-		ServiceName: entity.ServiceName.String(),
+		ComponentType: protocol.Action,
+		ServiceName:   entity.ServiceName.String(),
 	})
 	return s.updateSpec()
 }
@@ -191,10 +191,10 @@ func (s *EntityDiscoveryServer) RegisterValueEntity(entity *value.Entity, config
 		return fmt.Errorf("failed to resolveFileDescriptor for DescriptorConfig: %+v: %w", config, err)
 	}
 	e := &protocol.Component{
-		ComponentType:    protocol.Value,
+		ComponentType: protocol.Value,
 		ServiceName:   entity.ServiceName.String(),
 	}
-	entitySettings:=  &protocol.Component_Entity{
+	entitySettings := &protocol.Component_Entity{
 		Entity: &protocol.EntitySettings{
 			EntityType: entity.PersistenceID,
 		},

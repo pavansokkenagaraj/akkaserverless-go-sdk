@@ -18,9 +18,9 @@ package eventsourced
 import (
 	"context"
 
+	"github.com/golang/protobuf/ptypes/any"
 	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/encoding"
 	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/protocol"
-	"github.com/golang/protobuf/ptypes/any"
 )
 
 type Context struct {

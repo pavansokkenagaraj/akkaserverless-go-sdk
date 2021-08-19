@@ -18,8 +18,8 @@ package crdt
 import (
 	"fmt"
 
-	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/entity"
 	"github.com/golang/protobuf/ptypes/any"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/entity"
 )
 
 // ORMap, or Observed-Removed Map, is similar to an ORSet, with the addition

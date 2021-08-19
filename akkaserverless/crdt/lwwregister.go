@@ -18,8 +18,8 @@ package crdt
 import (
 	"fmt"
 
-	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/entity"
 	"github.com/golang/protobuf/ptypes/any"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/entity"
 )
 
 // LWWRegister, or Last-Write-Wins Register, is a CRDT that can hold any value,

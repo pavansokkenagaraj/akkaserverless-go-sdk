@@ -18,8 +18,8 @@ package crdt
 import (
 	"fmt"
 
-	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/entity"
 	"github.com/golang/protobuf/ptypes/any"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/entity"
 )
 
 // GSet, or Grow-only Set, is a set that can only have items added to it.

@@ -19,10 +19,10 @@ import (
 	"errors"
 	"fmt"
 
+	"github.com/golang/protobuf/proto"
 	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/encoding"
 	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/eventsourced"
 	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/protocol"
-	"github.com/golang/protobuf/proto"
 )
 
 type TestModel struct {

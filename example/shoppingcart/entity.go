@@ -19,10 +19,10 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/eventsourced"
-	domain "github.com/lightbend/akkaserverless-go-sdk/example/shoppingcart/persistence"
 	"github.com/golang/protobuf/proto"
 	"github.com/golang/protobuf/ptypes/empty"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/eventsourced"
+	domain "github.com/lightbend/akkaserverless-go-sdk/example/shoppingcart/persistence"
 )
 
 // A Cloudstate event sourced entity implementing a shopping cart.

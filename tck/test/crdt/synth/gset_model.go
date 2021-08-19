@@ -16,8 +16,8 @@
 package synth
 
 import (
-	"github.com/lightbend/akkaserverless-go-sdk/tck/crdt"
 	"github.com/golang/protobuf/proto"
+	"github.com/lightbend/akkaserverless-go-sdk/tck/crdt"
 )
 
 func gsetRequest(messages ...proto.Message) *crdt.GSetRequest {

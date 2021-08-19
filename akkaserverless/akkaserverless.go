@@ -34,12 +34,12 @@ import (
 
 // Akkaserverless is an instance of a Akkaserverless User Function.
 type Akkaserverless struct {
-	grpcServer            *grpc.Server
-	entityDiscoveryServer *discovery.EntityDiscoveryServer
+	grpcServer             *grpc.Server
+	entityDiscoveryServer  *discovery.EntityDiscoveryServer
 	eventSourcedServer     *eventsourced.Server
 	replicatedEntityServer *crdt.Server
 	actionServer           *action.Server
-	valueServer           *value.Server
+	valueServer            *value.Server
 }
 
 // New returns a new Akkaserverless instance.
