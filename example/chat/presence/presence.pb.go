@@ -25,7 +25,7 @@
 package presence
 
 import (
-	_ "github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate"
+	_ "github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless"
 	proto "github.com/golang/protobuf/proto"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"

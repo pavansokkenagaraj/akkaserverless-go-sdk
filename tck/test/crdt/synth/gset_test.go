@@ -22,8 +22,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/encoding"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/entity"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/encoding"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/entity"
 	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/tck/crdt"
 )
 

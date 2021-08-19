@@ -18,10 +18,10 @@ package friends
 import (
 	"fmt"
 
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/crdt"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/encoding"
 	"github.com/golang/protobuf/proto"
 	"github.com/golang/protobuf/ptypes/any"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/crdt"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/encoding"
 )
 
 type Entity struct {

@@ -21,9 +21,9 @@ import (
 	"net"
 	"testing"
 
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/crdt"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/protocol"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/crdt"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/protocol"
 	crdt2 "github.com/pavansokkenagaraj/akkaserverless-go-sdk/tck/crdt"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/test/bufconn"
@@ -33,7 +33,7 @@ const serviceName = "crdt.TckCrdt"
 
 type server struct {
 	t              *testing.T
-	server         *cloudstate.CloudState
+	server         *akkaserverless.CloudState
 	conn           *grpc.ClientConn
 	lis            *bufconn.Listener
 	teardownServer func()
@@ -46,7 +46,7 @@ func newServer(t *testing.T) *server {
 	if s.t == nil {
 		panic("not test context defined")
 	}
-	server, err := cloudstate.New(protocol.Config{
+	server, err := akkaserverless.New(protocol.Config{
 		ServiceName:    "io.cloudstate.tck.Crdt", // the service name the proxy gets to know about
 		ServiceVersion: "0.2.0",
 	})

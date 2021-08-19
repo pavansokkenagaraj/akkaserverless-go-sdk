@@ -23,7 +23,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/protocol"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/protocol"
 	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/example/crdt_shoppingcart/shoppingcart"
 )
 

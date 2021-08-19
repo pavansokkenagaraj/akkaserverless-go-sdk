@@ -3,9 +3,9 @@ package valueentity
 import (
 	"errors"
 
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/encoding"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/protocol"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/value"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/encoding"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/protocol"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/value"
 	"github.com/golang/protobuf/proto"
 	"github.com/golang/protobuf/ptypes/any"
 )

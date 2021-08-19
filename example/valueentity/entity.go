@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"sort"
 
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/encoding"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/protocol"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/value"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/encoding"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/protocol"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/value"
 	domain "github.com/pavansokkenagaraj/akkaserverless-go-sdk/example/valueentity/persistence"
 	"github.com/golang/protobuf/proto"
 	"github.com/golang/protobuf/ptypes/any"

@@ -18,14 +18,14 @@ package main
 import (
 	"log"
 
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/crdt"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/protocol"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/crdt"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/protocol"
 	tck "github.com/pavansokkenagaraj/akkaserverless-go-sdk/tck/crdt"
 )
 
 func main() {
-	server, err := cloudstate.New(protocol.Config{
+	server, err := akkaserverless.New(protocol.Config{
 		ServiceName:    "io.cloudstate.tck.Crdt", // the servicename the proxy gets to know about
 		ServiceVersion: "0.2.0",
 	})

@@ -3,16 +3,16 @@ package main
 import (
 	"log"
 
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/crdt"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/protocol"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/crdt"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/protocol"
 	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/example/crdt_shoppingcart/shoppingcart"
 )
 
 // main creates a CloudState instance and registers the ShoppingCart
 // as a event sourced entity.
 func main() {
-	server, err := cloudstate.New(protocol.Config{
+	server, err := akkaserverless.New(protocol.Config{
 		ServiceName:    "shopping-cart",
 		ServiceVersion: "0.1.0",
 	})

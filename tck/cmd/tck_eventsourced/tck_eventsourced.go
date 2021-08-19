@@ -19,12 +19,12 @@ import (
 	"log"
 	"time"
 
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/action"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/crdt"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/eventsourced"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/protocol"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/value"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/action"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/crdt"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/eventsourced"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/protocol"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/value"
 	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/example/shoppingcart"
 	actionTCK "github.com/pavansokkenagaraj/akkaserverless-go-sdk/tck/action"
 	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/tck/crdt2"
@@ -35,7 +35,7 @@ import (
 
 // tag::shopping-cart-main[]
 func main() {
-	server, err := cloudstate.New(protocol.Config{
+	server, err := akkaserverless.New(protocol.Config{
 		ServiceName:    "cloudstate.tck.model.EventSourcedTckModel", // the servicename the proxy gets to know about
 		ServiceVersion: "0.2.0",
 	})

@@ -22,9 +22,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/encoding"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/entity"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/protocol"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/encoding"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/entity"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/protocol"
 	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/example/shoppingcart"
 	domain "github.com/pavansokkenagaraj/akkaserverless-go-sdk/example/shoppingcart/persistence"
 )

@@ -6,9 +6,9 @@ import (
 	"net"
 	"testing"
 
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/eventsourced"
-	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/protocol"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/eventsourced"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless/protocol"
 	shoppingcart2 "github.com/pavansokkenagaraj/akkaserverless-go-sdk/example/shoppingcart"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/test/bufconn"
@@ -16,7 +16,7 @@ import (
 
 type server struct {
 	t              *testing.T
-	server         *cloudstate.CloudState
+	server         *akkaserverless.CloudState
 	conn           *grpc.ClientConn
 	lis            *bufconn.Listener
 	teardownServer func()
@@ -31,7 +31,7 @@ func newServer(t *testing.T) *server {
 		panic("not test context defined")
 	}
 	s.t.Helper()
-	server, err := cloudstate.New(protocol.Config{
+	server, err := akkaserverless.New(protocol.Config{
 		ServiceName:    "shopping-cart",
 		ServiceVersion: "9.9.8",
 	})

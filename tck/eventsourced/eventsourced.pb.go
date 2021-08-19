@@ -25,7 +25,7 @@
 package eventsourced
 
 import (
-	_ "github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate"
+	_ "github.com/pavansokkenagaraj/akkaserverless-go-sdk/akkaserverless"
 	proto "github.com/golang/protobuf/proto"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
