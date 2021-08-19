@@ -1,3 +1,6 @@
 # ignore ide files
 .idea
 .vscoce
+
+# ignore working directories
+proto
