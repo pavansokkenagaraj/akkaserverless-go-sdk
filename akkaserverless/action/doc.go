@@ -13,5 +13,5 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// Package action implements the Cloudstate Action protocol.
+// Package action implements the Akkaserverless Action protocol.
 package action

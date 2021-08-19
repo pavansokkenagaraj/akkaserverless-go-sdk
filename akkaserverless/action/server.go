@@ -314,7 +314,7 @@ type runner struct {
 func (r *runner) runCommand(cmd *entity.ActionCommand) error {
 	// unmarshal the commands message
 	msgName := strings.TrimPrefix(cmd.GetPayload().GetTypeUrl(), "type.googleapis.com/")
-	if strings.HasPrefix(msgName, "json.cloudstate.io/") {
+	if strings.HasPrefix(msgName, "json.akkaserverless.io/") {
 		return r.context.Instance.HandleCommand(r.context, cmd.Name, cmd.Payload)
 	}
 	messageType := proto.MessageType(msgName)

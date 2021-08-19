@@ -23,7 +23,7 @@ import (
 )
 
 const (
-	PrimitiveTypeURLPrefix = "p.cloudstate.io"
+	PrimitiveTypeURLPrefix = "p.akkaserverless.io"
 	ProtoAnyBase           = "type.googleapis.com"
 
 	PrimitiveTypeURLPrefixInt32  = PrimitiveTypeURLPrefix + "/int32"

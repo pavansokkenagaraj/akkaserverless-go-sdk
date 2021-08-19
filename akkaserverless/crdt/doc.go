@@ -13,5 +13,5 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// Package crdt implements the Cloudstate CRDT state model support.
+// Package crdt implements the Akkaserverless CRDT state model support.
 package crdt

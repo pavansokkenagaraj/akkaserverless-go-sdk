@@ -13,5 +13,5 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// Package eventsourced implements the Cloudstate eventsourcing state model.
+// Package eventsourced implements the Akkaserverless eventsourcing state model.
 package eventsourced

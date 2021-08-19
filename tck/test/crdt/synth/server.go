@@ -33,7 +33,7 @@ const serviceName = "crdt.TckCrdt"
 
 type server struct {
 	t              *testing.T
-	server         *akkaserverless.CloudState
+	server         *akkaserverless.Akkaserverless
 	conn           *grpc.ClientConn
 	lis            *bufconn.Listener
 	teardownServer func()

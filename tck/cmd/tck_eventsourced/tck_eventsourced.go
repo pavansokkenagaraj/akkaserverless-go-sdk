@@ -94,7 +94,7 @@ func main() {
 	}.AddDomainDescriptor("domain.proto"))
 	// end::register[]
 	if err != nil {
-		log.Fatalf("CloudState failed to register entity: %s", err)
+		log.Fatalf("Akkaserverless failed to register entity: %s", err)
 	}
 	// end::event-sourced-entity-type[]
 
@@ -105,7 +105,7 @@ func main() {
 		Service: "tck_action.proto",
 	})
 	if err != nil {
-		log.Fatalf("CloudState failed to register entity: %s", err)
+		log.Fatalf("Akkaserverless failed to register entity: %s", err)
 	}
 	err = server.RegisterAction(&action.Entity{
 		ServiceName: "cloudstate.tck.model.action.ActionTwo",
@@ -114,7 +114,7 @@ func main() {
 		Service: "tck_action.proto",
 	})
 	if err != nil {
-		log.Fatalf("CloudState failed to register entity: %s", err)
+		log.Fatalf("Akkaserverless failed to register entity: %s", err)
 	}
 
 	err = server.RegisterCRDT(&crdt.Entity{
@@ -124,7 +124,7 @@ func main() {
 		Service: "tck_crdt2.proto",
 	})
 	if err != nil {
-		log.Fatalf("CloudState failed to register entity: %s", err)
+		log.Fatalf("Akkaserverless failed to register entity: %s", err)
 	}
 	err = server.RegisterCRDT(&crdt.Entity{
 		ServiceName: "cloudstate.tck.model.crdt.CrdtTwo",
@@ -133,7 +133,7 @@ func main() {
 		Service: "tck_crdt2.proto",
 	})
 	if err != nil {
-		log.Fatalf("CloudState failed to register entity: %s", err)
+		log.Fatalf("Akkaserverless failed to register entity: %s", err)
 	}
 	err = server.RegisterCRDT(&crdt.Entity{
 		ServiceName: "cloudstate.tck.model.crdt.CrdtConfigured",
@@ -142,7 +142,7 @@ func main() {
 		Service: "tck_crdt2.proto",
 	}, crdt.WithPassivationStrategyTimeout(100*time.Millisecond))
 	if err != nil {
-		log.Fatalf("CloudState failed to register entity: %s", err)
+		log.Fatalf("Akkaserverless failed to register entity: %s", err)
 	}
 
 	err = server.RegisterValueEntity(&value.Entity{
@@ -153,7 +153,7 @@ func main() {
 		Service: "tck_valueentity.proto",
 	})
 	if err != nil {
-		log.Fatalf("CloudState failed to register entity: %s", err)
+		log.Fatalf("Akkaserverless failed to register entity: %s", err)
 	}
 	err = server.RegisterValueEntity(&value.Entity{
 		ServiceName:   "cloudstate.tck.model.valueentity.ValueEntityTwo",
@@ -163,7 +163,7 @@ func main() {
 		Service: "tck_valueentity.proto",
 	})
 	if err != nil {
-		log.Fatalf("CloudState failed to register entity: %s", err)
+		log.Fatalf("Akkaserverless failed to register entity: %s", err)
 	}
 	err = server.RegisterValueEntity(
 		&value.Entity{
@@ -175,7 +175,7 @@ func main() {
 		}, value.WithPassivationStrategyTimeout(100*time.Millisecond),
 	)
 	if err != nil {
-		log.Fatalf("CloudState failed to register entity: %s", err)
+		log.Fatalf("Akkaserverless failed to register entity: %s", err)
 	}
 
 	// event log eventing
@@ -188,7 +188,7 @@ func main() {
 		Service: "eventlogeventing.proto",
 	})
 	if err != nil {
-		log.Fatalf("CloudState failed to register entity: %s", err)
+		log.Fatalf("Akkaserverless failed to register entity: %s", err)
 	}
 	err = server.RegisterEventSourced(&eventsourced.Entity{
 		ServiceName:   "cloudstate.tck.model.eventlogeventing.EventSourcedEntityOne",
@@ -200,7 +200,7 @@ func main() {
 		Service: "eventlogeventing.proto",
 	})
 	if err != nil {
-		log.Fatalf("CloudState failed to register entity: %s", err)
+		log.Fatalf("Akkaserverless failed to register entity: %s", err)
 	}
 	err = server.RegisterEventSourced(&eventsourced.Entity{
 		ServiceName:   "cloudstate.tck.model.eventlogeventing.EventSourcedEntityTwo",
@@ -212,7 +212,7 @@ func main() {
 		Service: "eventlogeventing.proto",
 	})
 	if err != nil {
-		log.Fatalf("CloudState failed to register entity: %s", err)
+		log.Fatalf("Akkaserverless failed to register entity: %s", err)
 	}
 
 	err = server.Run()

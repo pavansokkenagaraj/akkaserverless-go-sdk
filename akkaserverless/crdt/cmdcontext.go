@@ -112,7 +112,7 @@ func (c *CommandContext) WriteConsistency(wc entity.CrdtWriteConsistency) {
 func (c *CommandContext) runCommand(cmd *protocol.Command) (*any.Any, error) {
 	// unmarshal the commands message
 	msgName := strings.TrimPrefix(cmd.GetPayload().GetTypeUrl(), "type.googleapis.com/")
-	if strings.HasPrefix(msgName, "json.cloudstate.io/") {
+	if strings.HasPrefix(msgName, "json.akkaserverless.io/") {
 		return c.Instance.HandleCommand(c, cmd.Name, cmd.Payload)
 	}
 	messageType := proto.MessageType(msgName)

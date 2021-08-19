@@ -9,7 +9,7 @@ import (
 	"github.com/lightbend/akkaserverless-go-sdk/example/crdt_shoppingcart/shoppingcart"
 )
 
-// main creates a CloudState instance and registers the ShoppingCart
+// main creates a Akkaserverless instance and registers the ShoppingCart
 // as a event sourced entity.
 func main() {
 	server, err := akkaserverless.New(protocol.Config{
@@ -29,11 +29,11 @@ func main() {
 	}.AddDomainDescriptor("domain.proto", "hotitems.proto"))
 	// end::register-crdt[]
 	if err != nil {
-		log.Fatalf("CloudState failed to register entity: %v", err)
+		log.Fatalf("Akkaserverless failed to register entity: %v", err)
 	}
 	err = server.Run()
 	if err != nil {
-		log.Fatalf("CloudState failed to run: %v", err)
+		log.Fatalf("Akkaserverless failed to run: %v", err)
 	}
 }
 

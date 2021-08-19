@@ -24,7 +24,7 @@ import (
 )
 
 // Entity captures an Entity with its ServiceName. It is used to be registered
-// as an CRDT entity on a Cloudstate instance.
+// as an CRDT entity on an Akkaserverless instance.
 type Entity struct {
 	// ServiceName is the fully qualified name of the service that implements
 	// this entities interface. Setting it is mandatory.

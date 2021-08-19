@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// Package discovery implements the Cloudstate entity discovery server.
+// Package discovery implements the Akkaserverless entity discovery server.
 package discovery
 
 import (
@@ -36,13 +36,13 @@ import (
 )
 
 const (
-	SupportLibraryName    = "cloudstate-go-support"
-	SupportLibraryVersion = "0.2.0"
+	SupportLibraryName    = "akkaserverless-go-sdk"
+	SupportLibraryVersion = "0.0.1"
 	ProtocolMajorVersion  = 0
-	ProtocolMinorVersion  = 2
+	ProtocolMinorVersion  = 7
 )
 
-// EntityDiscoveryServer implements the Cloudstate discovery protocol.
+// EntityDiscoveryServer implements the Akkaserverless discovery protocol.
 type EntityDiscoveryServer struct {
 	mu                sync.RWMutex
 	fileDescriptorSet *filedescr.FileDescriptorSet
@@ -74,7 +74,7 @@ func NewServer(config protocol.Config) *EntityDiscoveryServer {
 
 // Discover returns an entity spec for registered entities.
 func (s *EntityDiscoveryServer) Discover(_ context.Context, info *protocol.ProxyInfo) (*protocol.EntitySpec, error) {
-	log.Printf("Received discovery call from sidecar [%s %s] supporting Cloudstate %v.%v\n",
+	log.Printf("Received discovery call from sidecar [%s %s] supporting Akkaserverless %v.%v\n",
 		info.ProxyName,
 		info.ProxyVersion,
 		info.ProtocolMajorVersion,
@@ -86,7 +86,7 @@ func (s *EntityDiscoveryServer) Discover(_ context.Context, info *protocol.Proxy
 	return s.entitySpec, nil
 }
 
-// ReportError logs any user function error reported by the Cloudstate proxy.
+// ReportError logs any user function error reported by the Akkaserverless proxy.
 func (s *EntityDiscoveryServer) ReportError(_ context.Context, error *protocol.UserFunctionError) (*empty.Empty, error) {
 	log.Printf("ReportError: %v\n", error)
 	return &empty.Empty{}, nil

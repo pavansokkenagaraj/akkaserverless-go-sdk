@@ -22,13 +22,13 @@ import (
 )
 
 func TestMarshalling(t *testing.T) {
-	t.Run("marshals to cloudstate any.Any", func(t *testing.T) {
+	t.Run("marshals to akaserverless any.Any", func(t *testing.T) {
 		s := &a{B: "29", C: 29}
 		x, err := MarshalJSON(s)
 		if err != nil {
 			t.Fail()
 		}
-		url := "json.cloudstate.io/github.com/cloudstateio/go-support/cloudstate/encoding.a"
+		url := "json.akkaserverless.io/github.com/akkaserverless/akkaserverless-go-sdk/akkaserverless/encoding.a"
 		if x.GetTypeUrl() != url {
 			t.Fail()
 		}

@@ -21,10 +21,10 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/entity"
-	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/protocol"
 	"github.com/golang/protobuf/proto"
 	"github.com/golang/protobuf/ptypes/any"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/entity"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/protocol"
 )
 
 type Context struct {
@@ -151,7 +151,7 @@ func (c *Context) entityReply(command *protocol.Command, reply *any.Any) *entity
 func (c *Context) runCommand(cmd *protocol.Command) (*any.Any, error) {
 	// unmarshal the commands message
 	msgName := strings.TrimPrefix(cmd.GetPayload().GetTypeUrl(), "type.googleapis.com/")
-	if strings.HasPrefix(msgName, "json.cloudstate.io/") {
+	if strings.HasPrefix(msgName, "json.akkaserverless.io/") {
 		return c.Instance.HandleCommand(c, cmd.Name, cmd.Payload)
 	}
 	messageType := proto.MessageType(msgName)

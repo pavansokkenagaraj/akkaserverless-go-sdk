@@ -16,8 +16,8 @@
 package protocol
 
 const (
-	EventSourced = "cloudstate.eventsourced.EventSourced"
-	CRDT         = "cloudstate.crdt.Crdt"
-	Action       = "cloudstate.action.ActionProtocol"
-	Value        = "cloudstate.valueentity.ValueEntity"
+	EventSourced = "akkaserverless.eventsourced.EventSourced"
+	CRDT         = "akkaserverless.crdt.Crdt"
+	Action       = "akkaserverless.action.ActionProtocol"
+	Value        = "akkaserverless.valueentity.ValueEntity"
 )

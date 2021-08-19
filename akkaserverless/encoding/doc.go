@@ -13,5 +13,5 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// Package encoding implements the cloudstate Any encoding support.
+// Package encoding implements the akkaserverless Any encoding support.
 package encoding

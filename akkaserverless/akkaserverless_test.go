@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// Package cloudstate implements the Cloudstate event sourced and entity discovery protocol.
+// Package Akkaserverless implements the Akkaserverless event sourced and entity discovery protocol.
 package akkaserverless
 
 import (
@@ -29,9 +29,9 @@ import (
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 )
 
-func TestNewCloudState(t *testing.T) {
-	cloudState, _ := New(protocol.Config{})
-	si := cloudState.grpcServer.GetServiceInfo()
+func TestNewAkkaserverless(t *testing.T) {
+	akkaserverless, _ := New(protocol.Config{})
+	si := akkaserverless.grpcServer.GetServiceInfo()
 	if si == nil {
 		t.Fail()
 	}
@@ -66,8 +66,8 @@ func TestEntityDiscoveryResponderDiscover(t *testing.T) {
 	if !strings.HasPrefix(spec.ServiceInfo.ServiceRuntime, "go") {
 		t.Errorf("spec.ServiceInfo.ServiceRuntime does not start with prefix: go")
 	}
-	if spec.ServiceInfo.SupportLibraryName != "cloudstate-go-support" {
-		t.Errorf("spec.ServiceInfo.SupportLibraryName != 'cloudstate-go-support'")
+	if spec.ServiceInfo.SupportLibraryName != "akkaserverless-go-support" {
+		t.Errorf("spec.ServiceInfo.SupportLibraryName != 'akkaserverless-go-support'")
 	}
 }
 

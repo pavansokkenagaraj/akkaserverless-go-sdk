@@ -35,7 +35,7 @@ type runner struct {
 	context *Context
 }
 
-// handleCommand handles a command received from the Cloudstate proxy.
+// handleCommand handles a command received from the Akkaserverless proxy.
 func (r *runner) handleCommand(cmd *protocol.Command) error {
 	msgName := strings.TrimPrefix(cmd.Payload.GetTypeUrl(), encoding.ProtoAnyBase+"/")
 	msgType := proto.MessageType(msgName)

@@ -26,14 +26,14 @@ import (
 )
 
 const (
-	JSONTypeURLPrefix = "json.cloudstate.io"
+	JSONTypeURLPrefix = "json.akkaserverless.io"
 )
 
 func JSON(value interface{}) (*any.Any, error) {
 	return MarshalJSON(value)
 }
 
-// MarshalJSON encodes a struct type into its Cloudstate Any JSON value.
+// MarshalJSON encodes a struct type into its Akkaserverless Any JSON value.
 func MarshalJSON(value interface{}) (*any.Any, error) {
 	typeOf := reflect.TypeOf(value)
 	if typeOf.Kind() == reflect.Ptr {
@@ -54,7 +54,7 @@ func MarshalJSON(value interface{}) (*any.Any, error) {
 	}, nil
 }
 
-// UnmarshalPrimitive decodes a Cloudstate Any protobuf message into its JSON value.
+// UnmarshalPrimitive decodes a Akkaserverless Any protobuf message into its JSON value.
 func UnmarshalJSON(any *any.Any, target interface{}) error {
 	if !strings.HasPrefix(any.GetTypeUrl(), JSONTypeURLPrefix) {
 		return ErrNotMarshalled

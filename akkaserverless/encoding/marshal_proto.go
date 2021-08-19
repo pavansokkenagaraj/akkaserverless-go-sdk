@@ -27,7 +27,7 @@ var ErrMarshal = errors.New("unable to marshal a message")
 
 // MarshalAny marshals a proto.Message to an any.Any value.
 func MarshalAny(pb interface{}) (*any.Any, error) {
-	// TODO: protobufs are expected here, but Cloudstate supports other formats
+	// TODO: protobufs are expected here, but Akkaserverless supports other formats
 	message, ok := pb.(proto.Message)
 	if !ok {
 		return nil, fmt.Errorf("got a non-proto message as protobuf: %v", pb)

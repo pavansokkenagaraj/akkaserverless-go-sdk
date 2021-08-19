@@ -110,7 +110,7 @@ type Snapshooter interface {
 	// entire journal doesn't need to be replayed, just the changes since
 	// the last snapshot.
 	Snapshot(ctx *Context) (snapshot interface{}, err error)
-	// HandleSnapshot is used to apply snapshots provided by the Cloudstate
+	// HandleSnapshot is used to apply snapshots provided by the Akkaserverless
 	// proxy.
 	HandleSnapshot(ctx *Context, snapshot interface{}) error
 }

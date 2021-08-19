@@ -31,7 +31,7 @@ import (
 // register holds a person object, and one node updates the age property, while
 // another concurrently updates the name property, only one of those updates will
 // eventually win. By default, LWWRegister’s are vulnerable to clock skew between
-// nodes. Cloudstate supports optionally providing a custom clock value should a
+// nodes. Akkaserverless supports optionally providing a custom clock value should a
 // more trustworthy ordering for updates be available.
 type LWWRegister struct {
 	value            *any.Any
