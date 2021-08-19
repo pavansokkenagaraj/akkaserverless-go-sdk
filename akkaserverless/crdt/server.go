@@ -18,13 +18,9 @@ package crdt
 import (
 	"errors"
 	"fmt"
-	"io"
-	"log"
 	"sync"
 
 	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/entity"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
 )
 
 // Server is the implementation of the Server server API for the CRDT service.
@@ -34,7 +30,7 @@ type Server struct {
 	// entities has descriptions of entities registered by service names
 	entities map[ServiceName]*Entity
 
-	entity.UnimplementedCrdtServer
+	entity.UnimplementedReplicatedEntitiesServer
 }
 
 // NewServer returns an initialized Server.
@@ -69,132 +65,137 @@ func (s *Server) Register(e *Entity) error {
 // respond with one reply per command in. They do not necessarily have to be sent
 // in the same order that the commands were sent, the command ID is used to correlate
 // commands to replies.
-func (s *Server) Handle(stream entity.Crdt_HandleServer) error {
-	defer func() {
-		if r := recover(); r != nil {
-			_ = sendFailure(fmt.Errorf("CrdtServer.Handle panic-ked with: %v", r), stream)
-			panic(r)
-		}
-	}()
-	for {
-		err := s.handle(stream)
-		if err == nil {
-			continue
-		}
-		if err == io.EOF {
-			return nil
-		}
-		if status.Code(err) == codes.Canceled {
-			return err
-		}
-		log.Print(err)
-		if sendErr := sendFailure(err, stream); sendErr != nil {
-			log.Print(sendErr)
-		}
-		return status.Error(codes.Aborted, err.Error())
-	}
+func (s *Server) Handle(stream entity.ReplicatedEntities_HandleServer) error {
+
+	return errors.New(`not implemented`)
+	// TODO: WIP fix needed - PA1
+	//
+	//defer func() {
+	//	if r := recover(); r != nil {
+	//		_ = sendFailure(fmt.Errorf("CrdtServer.Handle panic-ked with: %v", r), stream)
+	//		panic(r)
+	//	}
+	//}()
+	//for {
+	//	err := s.handle(stream)
+	//	if err == nil {
+	//		continue
+	//	}
+	//	if err == io.EOF {
+	//		return nil
+	//	}
+	//	if status.Code(err) == codes.Canceled {
+	//		return err
+	//	}
+	//	log.Print(err)
+	//	if sendErr := sendFailure(err, stream); sendErr != nil {
+	//		log.Print(sendErr)
+	//	}
+	//	return status.Error(codes.Aborted, err.Error())
+	//}
 }
 
-// handle handles a streams messages to be received.
-// io.EOF returned will close the stream gracefully, other errors will be sent
-// to the proxy as a failure and a nil error value restarts the stream to be
-// reused.
-func (s *Server) handle(stream entity.Crdt_HandleServer) error {
-	first, err := stream.Recv()
-	if err != nil {
-		return err
-	}
-	r := &runner{stream: stream}
-	switch m := first.GetMessage().(type) {
-	case *entity.CrdtStreamIn_Init:
-		// First, always a CrdtInit message must be received.
-		if err = s.handleInit(m.Init, r); err != nil {
-			return fmt.Errorf("handling of CrdtInit failed with: %w", err)
-		}
-	default:
-		return fmt.Errorf("a message was received without having a CrdtInit message first: %v", m)
-	}
-	// Handle all other messages after a CrdtInit message has been received.
-	for {
-		if r.context.deleted {
-			// With a context flagged deleted, a CrdtDelete
-			// was received or delete state action was sent.
-			// Here we return no error and left the stream open.
-			return nil
-		}
-		if r.context.failed != nil {
-			// failed means deactivated. We may never get this far.
-			return nil
-		}
-		msg, err := r.stream.Recv()
-		if err != nil {
-			return err
-		}
-		switch m := msg.GetMessage().(type) {
-		case *entity.CrdtStreamIn_Delta:
-			if err := r.handleDelta(m.Delta); err != nil {
-				return err
-			}
-			if err := r.handleChange(); err != nil {
-				return err
-			}
-		case *entity.CrdtStreamIn_Delete:
-			// Delete the entity. May be sent at any time. The user function should clear its value when it receives this.
-			// A proxy may decide to terminate the stream after sending this.
-			r.context.Delete()
-		case *entity.CrdtStreamIn_Command:
-			// A command, may be sent at any time.
-			// The CRDT is allowed to be changed.
-			if err := r.handleCommand(m.Command); err != nil {
-				return err
-			}
-		case *entity.CrdtStreamIn_StreamCancelled:
-			// The CRDT is allowed to be changed.
-			if err := r.handleCancellation(m.StreamCancelled); err != nil {
-				return err
-			}
-		case *entity.CrdtStreamIn_Init:
-			if EntityID(m.Init.EntityId) == r.context.EntityID {
-				return errors.New("duplicate init message for the same entity")
-			}
-			return fmt.Errorf("duplicate init message for a new entity: %q", m.Init.EntityId)
-		case nil:
-			return errors.New("empty message received")
-		default:
-			return fmt.Errorf("unknown message received: %+v", msg.GetMessage())
-		}
-	}
-}
-
-func (s *Server) handleInit(init *entity.CrdtInit, r *runner) error {
-	if init.GetServiceName() == "" || init.GetEntityId() == "" {
-		return fmt.Errorf("no service name or entity id was defined for init: %+v", init)
-	}
-	serviceName := ServiceName(init.GetServiceName())
-	s.mu.RLock()
-	entity, ok := s.entities[serviceName]
-	s.mu.RUnlock()
-	if !ok {
-		return fmt.Errorf("received CrdtInit for an unknown crdt service: %q", serviceName)
-	}
-	if entity.EntityFunc == nil {
-		return fmt.Errorf("entity.EntityFunc is not defined for service: %q", serviceName)
-	}
-	id := EntityID(init.GetEntityId())
-	r.context = &Context{
-		EntityID:    id,
-		Entity:      entity,
-		Instance:    entity.EntityFunc(id),
-		created:     false,
-		ctx:         r.stream.Context(), // This context is stable as long as the runner runs.
-		streamedCtx: make(map[CommandID]*CommandContext),
-	}
-	// The init message may have an initial delta.
-	if delta := init.GetDelta(); delta != nil {
-		if err := r.handleDelta(delta); err != nil {
-			return err
-		}
-	}
-	// The user entity can provide a CRDT through a default function if none is set.
-	return r.context.initDefault()
-}
+// TODO: WIP fix needed - PA1
+//// handle handles a streams messages to be received.
+//// io.EOF returned will close the stream gracefully, other errors will be sent
+//// to the proxy as a failure and a nil error value restarts the stream to be
+//// reused.
+//func (s *Server) handle(stream entity.ReplicatedEntities_HandleServer) error {
+//	first, err := stream.Recv()
+//	if err != nil {
+//		return err
+//	}
+//	r := &runner{stream: stream}
+//	switch m := first.GetMessage().(type) {
+//	case *entity.ReplicatedEntityStreamIn_Init:
+//		// First, always a CrdtInit message must be received.
+//		if err = s.handleInit(m.Init, r); err != nil {
+//			return fmt.Errorf("handling of CrdtInit failed with: %w", err)
+//		}
+//	default:
+//		return fmt.Errorf("a message was received without having a CrdtInit message first: %v", m)
+//	}
+//	// Handle all other messages after a CrdtInit message has been received.
+//	for {
+//		if r.context.deleted {
+//			// With a context flagged deleted, a CrdtDelete
+//			// was received or delete state action was sent.
+//			// Here we return no error and left the stream open.
+//			return nil
+//		}
+//		if r.context.failed != nil {
+//			// failed means deactivated. We may never get this far.
+//			return nil
+//		}
+//		msg, err := r.stream.Recv()
+//		if err != nil {
+//			return err
+//		}
+//		switch m := msg.GetMessage().(type) {
+//		case *entity.CrdtStreamIn_Delta:
+//			if err := r.handleDelta(m.Delta); err != nil {
+//				return err
+//			}
+//			if err := r.handleChange(); err != nil {
+//				return err
+//			}
+//		case *entity.CrdtStreamIn_Delete:
+//			// Delete the entity. May be sent at any time. The user function should clear its value when it receives this.
+//			// A proxy may decide to terminate the stream after sending this.
+//			r.context.Delete()
+//		case *entity.CrdtStreamIn_Command:
+//			// A command, may be sent at any time.
+//			// The CRDT is allowed to be changed.
+//			if err := r.handleCommand(m.Command); err != nil {
+//				return err
+//			}
+//		case *entity.CrdtStreamIn_StreamCancelled:
+//			// The CRDT is allowed to be changed.
+//			if err := r.handleCancellation(m.StreamCancelled); err != nil {
+//				return err
+//			}
+//		case *entity.CrdtStreamIn_Init:
+//			if EntityID(m.Init.EntityId) == r.context.EntityID {
+//				return errors.New("duplicate init message for the same entity")
+//			}
+//			return fmt.Errorf("duplicate init message for a new entity: %q", m.Init.EntityId)
+//		case nil:
+//			return errors.New("empty message received")
+//		default:
+//			return fmt.Errorf("unknown message received: %+v", msg.GetMessage())
+//		}
+//	}
+//}
+//
+//func (s *Server) handleInit(init *entity.CrdtInit, r *runner) error {
+//	if init.GetServiceName() == "" || init.GetEntityId() == "" {
+//		return fmt.Errorf("no service name or entity id was defined for init: %+v", init)
+//	}
+//	serviceName := ServiceName(init.GetServiceName())
+//	s.mu.RLock()
+//	entity, ok := s.entities[serviceName]
+//	s.mu.RUnlock()
+//	if !ok {
+//		return fmt.Errorf("received CrdtInit for an unknown crdt service: %q", serviceName)
+//	}
+//	if entity.EntityFunc == nil {
+//		return fmt.Errorf("entity.EntityFunc is not defined for service: %q", serviceName)
+//	}
+//	id := EntityID(init.GetEntityId())
+//	r.context = &Context{
+//		EntityID:    id,
+//		Entity:      entity,
+//		Instance:    entity.EntityFunc(id),
+//		created:     false,
+//		ctx:         r.stream.Context(), // This context is stable as long as the runner runs.
+//		streamedCtx: make(map[CommandID]*CommandContext),
+//	}
+//	// The init message may have an initial delta.
+//	if delta := init.GetDelta(); delta != nil {
+//		if err := r.handleDelta(delta); err != nil {
+//			return err
+//		}
+//	}
+//	// The user entity can provide a CRDT through a default function if none is set.
+//	return r.context.initDefault()
+//}
