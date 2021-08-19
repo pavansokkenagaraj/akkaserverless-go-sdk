@@ -60,7 +60,7 @@ func (c *CommandContext) Streamed() bool {
 	if c.cmd == nil {
 		return false
 	}
-	return c.cmd.Streamed
+	return c.ended
 }
 
 // ChangeFunc sets the function to be called whenever the CRDT is changed.

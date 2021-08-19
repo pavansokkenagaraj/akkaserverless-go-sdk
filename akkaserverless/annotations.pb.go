@@ -490,9 +490,6 @@ func file_annotations_proto_init() {
 	if File_annotations_proto != nil {
 		return
 	}
-	file_akkaserverless_component_proto_init()
-	file_akkaserverless_eventing_proto_init()
-	file_akkaserverless_views_proto_init()
 	if !protoimpl.UnsafeEnabled {
 		file_annotations_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*FieldOptions); i {

@@ -184,7 +184,6 @@ func file_entity_proto_init() {
 	if File_entity_proto != nil {
 		return
 	}
-	file_akkaserverless_component_component_proto_init()
 	if !protoimpl.UnsafeEnabled {
 		file_entity_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Command); i {
