@@ -18,8 +18,8 @@ package friends
 import (
 	"fmt"
 
-	"github.com/cloudstateio/go-support/cloudstate/crdt"
-	"github.com/cloudstateio/go-support/cloudstate/encoding"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/crdt"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/encoding"
 	"github.com/golang/protobuf/proto"
 	"github.com/golang/protobuf/ptypes/any"
 )

@@ -19,8 +19,8 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/cloudstateio/go-support/cloudstate/entity"
-	"github.com/cloudstateio/go-support/cloudstate/protocol"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/entity"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/protocol"
 )
 
 // sendProtocolFailure sends a given error to the proxy. If the error is a protocol.ServerError a corresponding

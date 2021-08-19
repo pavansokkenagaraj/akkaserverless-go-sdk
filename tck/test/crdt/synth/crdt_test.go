@@ -23,8 +23,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/cloudstateio/go-support/cloudstate/protocol"
-	"github.com/cloudstateio/go-support/example/crdt_shoppingcart/shoppingcart"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/protocol"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/example/crdt_shoppingcart/shoppingcart"
 )
 
 // TestCRDT runs the TCK for the CRDT state model.

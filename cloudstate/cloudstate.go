@@ -22,13 +22,13 @@ import (
 	"net"
 	"os"
 
-	"github.com/cloudstateio/go-support/cloudstate/action"
-	"github.com/cloudstateio/go-support/cloudstate/crdt"
-	"github.com/cloudstateio/go-support/cloudstate/discovery"
-	"github.com/cloudstateio/go-support/cloudstate/entity"
-	"github.com/cloudstateio/go-support/cloudstate/eventsourced"
-	"github.com/cloudstateio/go-support/cloudstate/protocol"
-	"github.com/cloudstateio/go-support/cloudstate/value"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/action"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/crdt"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/discovery"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/entity"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/eventsourced"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/protocol"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/value"
 	"google.golang.org/grpc"
 )
 

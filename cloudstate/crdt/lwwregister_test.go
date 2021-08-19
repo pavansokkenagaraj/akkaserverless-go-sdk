@@ -18,8 +18,8 @@ package crdt
 import (
 	"testing"
 
-	"github.com/cloudstateio/go-support/cloudstate/encoding"
-	"github.com/cloudstateio/go-support/cloudstate/entity"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/encoding"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/entity"
 )
 
 func TestLWWRegister(t *testing.T) {

@@ -20,8 +20,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/cloudstateio/go-support/cloudstate/entity"
-	"github.com/cloudstateio/go-support/tck/crdt"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/entity"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/tck/crdt"
 )
 
 func TestCRDTVote(t *testing.T) {

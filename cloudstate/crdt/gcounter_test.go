@@ -18,7 +18,7 @@ package crdt
 import (
 	"testing"
 
-	"github.com/cloudstateio/go-support/cloudstate/entity"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/entity"
 )
 
 func TestGCounter(t *testing.T) {

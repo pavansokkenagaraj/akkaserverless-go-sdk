@@ -6,10 +6,10 @@ import (
 	"net"
 	"testing"
 
-	"github.com/cloudstateio/go-support/cloudstate"
-	"github.com/cloudstateio/go-support/cloudstate/eventsourced"
-	"github.com/cloudstateio/go-support/cloudstate/protocol"
-	shoppingcart2 "github.com/cloudstateio/go-support/example/shoppingcart"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/eventsourced"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/protocol"
+	shoppingcart2 "github.com/pavansokkenagaraj/akkaserverless-go-sdk/example/shoppingcart"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/test/bufconn"
 )

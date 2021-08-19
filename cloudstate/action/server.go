@@ -24,8 +24,8 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/cloudstateio/go-support/cloudstate/entity"
-	"github.com/cloudstateio/go-support/cloudstate/protocol"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/entity"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/protocol"
 	"github.com/golang/protobuf/proto"
 )
 

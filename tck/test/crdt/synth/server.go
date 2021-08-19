@@ -21,10 +21,10 @@ import (
 	"net"
 	"testing"
 
-	"github.com/cloudstateio/go-support/cloudstate"
-	"github.com/cloudstateio/go-support/cloudstate/crdt"
-	"github.com/cloudstateio/go-support/cloudstate/protocol"
-	crdt2 "github.com/cloudstateio/go-support/tck/crdt"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/crdt"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/protocol"
+	crdt2 "github.com/pavansokkenagaraj/akkaserverless-go-sdk/tck/crdt"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/test/bufconn"
 )

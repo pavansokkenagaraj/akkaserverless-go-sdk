@@ -19,7 +19,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/cloudstateio/go-support/cloudstate/encoding"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/encoding"
 	"github.com/golang/protobuf/proto"
 	"github.com/golang/protobuf/ptypes/any"
 )

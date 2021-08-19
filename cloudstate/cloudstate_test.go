@@ -24,8 +24,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/cloudstateio/go-support/cloudstate/discovery"
-	"github.com/cloudstateio/go-support/cloudstate/protocol"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/discovery"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/protocol"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 )
 

@@ -3,10 +3,10 @@ package main
 import (
 	"log"
 
-	"github.com/cloudstateio/go-support/cloudstate"
-	"github.com/cloudstateio/go-support/cloudstate/crdt"
-	"github.com/cloudstateio/go-support/cloudstate/protocol"
-	"github.com/cloudstateio/go-support/example/crdt_shoppingcart/shoppingcart"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/crdt"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/protocol"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/example/crdt_shoppingcart/shoppingcart"
 )
 
 // main creates a CloudState instance and registers the ShoppingCart

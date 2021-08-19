@@ -15,7 +15,7 @@
 
 package crdt
 
-import "github.com/cloudstateio/go-support/cloudstate/entity"
+import "github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/entity"
 
 type Clock uint64
 

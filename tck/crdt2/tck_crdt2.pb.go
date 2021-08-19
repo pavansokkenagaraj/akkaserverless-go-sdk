@@ -25,7 +25,7 @@
 package crdt2
 
 import (
-	_ "github.com/cloudstateio/go-support/cloudstate"
+	_ "github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate"
 	proto "github.com/golang/protobuf/proto"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"

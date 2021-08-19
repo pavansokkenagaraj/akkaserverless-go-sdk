@@ -3,7 +3,7 @@ package crdt
 import (
 	"testing"
 
-	"github.com/cloudstateio/go-support/cloudstate/encoding"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/encoding"
 )
 
 func BenchmarkORMapEncoding(b *testing.B) {

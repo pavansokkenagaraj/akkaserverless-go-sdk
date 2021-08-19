@@ -22,11 +22,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/cloudstateio/go-support/cloudstate/encoding"
-	"github.com/cloudstateio/go-support/cloudstate/entity"
-	"github.com/cloudstateio/go-support/cloudstate/protocol"
-	"github.com/cloudstateio/go-support/example/shoppingcart"
-	domain "github.com/cloudstateio/go-support/example/shoppingcart/persistence"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/encoding"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/entity"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/cloudstate/protocol"
+	"github.com/pavansokkenagaraj/akkaserverless-go-sdk/example/shoppingcart"
+	domain "github.com/pavansokkenagaraj/akkaserverless-go-sdk/example/shoppingcart/persistence"
 )
 
 const serviceName = "com.example.shoppingcart.ShoppingCart"

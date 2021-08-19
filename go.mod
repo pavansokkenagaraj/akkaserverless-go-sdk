@@ -1,4 +1,4 @@
-module github.com/cloudstateio/go-support
+module github.com/pavansokkenagaraj/akkaserverless-go-sdk
 
 go 1.14
 
