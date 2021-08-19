@@ -44,7 +44,7 @@ type Entity struct {
 	// EntityFunc is a factory method which generates a new Entity.
 	EntityFunc func(id EntityID) EntityHandler
 
-	PassivationStrategy protocol.EntityPassivationStrategy
+	PassivationStrategy protocol.PassivationStrategy
 }
 
 type Option func(s *Entity)
@@ -57,8 +57,8 @@ func (e *Entity) Options(options ...Option) {
 
 func WithPassivationStrategyTimeout(duration time.Duration) Option {
 	return func(e *Entity) {
-		e.PassivationStrategy = protocol.EntityPassivationStrategy{
-			Strategy: &protocol.EntityPassivationStrategy_Timeout{
+		e.PassivationStrategy = protocol.PassivationStrategy{
+			Strategy: &protocol.PassivationStrategy_Timeout{
 				Timeout: &protocol.TimeoutPassivationStrategy{
 					Timeout: duration.Milliseconds(),
 				},

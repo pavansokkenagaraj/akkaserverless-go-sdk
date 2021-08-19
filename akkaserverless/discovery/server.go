@@ -24,15 +24,15 @@ import (
 	"runtime"
 	"sync"
 
+	"github.com/golang/protobuf/descriptor"
+	"github.com/golang/protobuf/proto"
+	filedescr "github.com/golang/protobuf/protoc-gen-go/descriptor"
+	"github.com/golang/protobuf/ptypes/empty"
 	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/action"
 	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/crdt"
 	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/eventsourced"
 	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/protocol"
 	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/value"
-	"github.com/golang/protobuf/descriptor"
-	"github.com/golang/protobuf/proto"
-	filedescr "github.com/golang/protobuf/protoc-gen-go/descriptor"
-	"github.com/golang/protobuf/ptypes/empty"
 )
 
 const (
@@ -46,16 +46,16 @@ const (
 type EntityDiscoveryServer struct {
 	mu                sync.RWMutex
 	fileDescriptorSet *filedescr.FileDescriptorSet
-	entitySpec        *protocol.EntitySpec
+	entitySpec        *protocol.Spec
 
-	protocol.UnimplementedEntityDiscoveryServer
+	protocol.UnimplementedDiscoveryServer
 }
 
 // NewServer returns a new and initialized EntityDiscoveryServer.
 func NewServer(config protocol.Config) *EntityDiscoveryServer {
 	return &EntityDiscoveryServer{
-		entitySpec: &protocol.EntitySpec{
-			Entities: make([]*protocol.Entity, 0),
+		entitySpec: &protocol.Spec{
+			Components: make([]*protocol.Component, 0),
 			ServiceInfo: &protocol.ServiceInfo{
 				ServiceName:           config.ServiceName,
 				ServiceVersion:        config.ServiceVersion,
@@ -73,7 +73,7 @@ func NewServer(config protocol.Config) *EntityDiscoveryServer {
 }
 
 // Discover returns an entity spec for registered entities.
-func (s *EntityDiscoveryServer) Discover(_ context.Context, info *protocol.ProxyInfo) (*protocol.EntitySpec, error) {
+func (s *EntityDiscoveryServer) Discover(_ context.Context, info *protocol.ProxyInfo) (*protocol.Spec, error) {
 	log.Printf("Received discovery call from sidecar [%s %s] supporting Akkaserverless %v.%v\n",
 		info.ProxyName,
 		info.ProxyVersion,
@@ -127,15 +127,21 @@ func (s *EntityDiscoveryServer) RegisterEventSourcedEntity(entity *eventsourced.
 	if err := s.resolveFileDescriptors(config); err != nil {
 		return fmt.Errorf("failed to resolve FileDescriptor for DescriptorConfig: %+v: %w", config, err)
 	}
-	e := &protocol.Entity{
-		EntityType:    protocol.EventSourced,
+	e := &protocol.Component{
+		ComponentType:    protocol.EventSourcedEntities,
 		ServiceName:   entity.ServiceName.String(),
-		PersistenceId: entity.PersistenceID,
+	}
+	entitySettings:=  &protocol.Component_Entity{
+		Entity: &protocol.EntitySettings{
+			EntityType: entity.PersistenceID,
+		},
 	}
 	if entity.PassivationStrategy.Strategy != nil {
-		e.PassivationStrategy = &entity.PassivationStrategy
+		entitySettings.Entity.PassivationStrategy = &entity.PassivationStrategy
 	}
-	s.entitySpec.Entities = append(s.entitySpec.Entities, e)
+	e.ComponentSettings = entitySettings
+
+	s.entitySpec.Components = append(s.entitySpec.Components, e)
 	return s.updateSpec()
 }
 
@@ -145,16 +151,23 @@ func (s *EntityDiscoveryServer) RegisterCRDTEntity(entity *crdt.Entity, config p
 	if err := s.resolveFileDescriptors(config); err != nil {
 		return fmt.Errorf("failed to resolveFileDescriptor for DescriptorConfig: %+v: %w", config, err)
 	}
-	e := &protocol.Entity{
-		EntityType:  protocol.CRDT,
+	e := &protocol.Component{
+		ComponentType:  protocol.CRDT,
 		ServiceName: entity.ServiceName.String(),
-		// TODO: as per https://github.com/cloudstateio/go-support/pull/67#issuecomment-749838999 this is temporary.
-		PersistenceId: entity.ServiceName.String(), // make sure CRDT entities have unique keys per service.
 	}
-	if entity.PassivationStrategy.GetStrategy() != nil {
-		e.PassivationStrategy = &entity.PassivationStrategy
+
+	entitySettings:=  &protocol.Component_Entity{
+		Entity: &protocol.EntitySettings{
+			// TODO: as per https://github.com/cloudstateio/go-support/pull/67#issuecomment-749838999 this is temporary.
+			EntityType: entity.ServiceName.String(),
+		},
 	}
-	s.entitySpec.Entities = append(s.entitySpec.Entities, e)
+	if entity.PassivationStrategy.Strategy != nil {
+		entitySettings.Entity.PassivationStrategy = &entity.PassivationStrategy
+	}
+	e.ComponentSettings = entitySettings
+
+	s.entitySpec.Components = append(s.entitySpec.Components, e)
 	return s.updateSpec()
 }
 
@@ -164,8 +177,8 @@ func (s *EntityDiscoveryServer) RegisterActionEntity(entity *action.Entity, conf
 	if err := s.resolveFileDescriptors(config); err != nil {
 		return fmt.Errorf("failed to resolveFileDescriptor for DescriptorConfig: %+v: %w", config, err)
 	}
-	s.entitySpec.Entities = append(s.entitySpec.Entities, &protocol.Entity{
-		EntityType:  protocol.Action,
+	s.entitySpec.Components = append(s.entitySpec.Components, &protocol.Component{
+		ComponentType:  protocol.Action,
 		ServiceName: entity.ServiceName.String(),
 	})
 	return s.updateSpec()
@@ -177,15 +190,21 @@ func (s *EntityDiscoveryServer) RegisterValueEntity(entity *value.Entity, config
 	if err := s.resolveFileDescriptors(config); err != nil {
 		return fmt.Errorf("failed to resolveFileDescriptor for DescriptorConfig: %+v: %w", config, err)
 	}
-	e := &protocol.Entity{
-		EntityType:    protocol.Value,
+	e := &protocol.Component{
+		ComponentType:    protocol.Value,
 		ServiceName:   entity.ServiceName.String(),
-		PersistenceId: entity.PersistenceID,
 	}
-	if entity.PassivationStrategy.GetStrategy() != nil {
-		e.PassivationStrategy = &entity.PassivationStrategy
+	entitySettings:=  &protocol.Component_Entity{
+		Entity: &protocol.EntitySettings{
+			EntityType: entity.PersistenceID,
+		},
 	}
-	s.entitySpec.Entities = append(s.entitySpec.Entities, e)
+	if entity.PassivationStrategy.Strategy != nil {
+		entitySettings.Entity.PassivationStrategy = &entity.PassivationStrategy
+	}
+	e.ComponentSettings = entitySettings
+
+	s.entitySpec.Components = append(s.entitySpec.Components, e)
 	return s.updateSpec()
 }
 

@@ -18,9 +18,8 @@ package action
 import (
 	"context"
 
-	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/entity"
-	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/protocol"
 	"github.com/golang/protobuf/ptypes/any"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/protocol"
 )
 
 type CloseFunc func(c *Context) error
@@ -34,7 +33,7 @@ type Context struct {
 	Instance EntityHandler
 	// ctx is the context.Context from the stream this context is assigned to.
 	ctx      context.Context
-	command  *entity.ActionCommand
+	command  *ActionCommand
 	metadata *protocol.Metadata
 
 	failure     error
@@ -84,7 +83,7 @@ func (c *Context) Cancel() {
 	c.cancelled = true
 }
 
-func (c *Context) Command() *entity.ActionCommand {
+func (c *Context) Command() *ActionCommand {
 	return c.command
 }
 

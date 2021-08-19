@@ -22,16 +22,16 @@ import (
 	"reflect"
 	"strings"
 
+	"github.com/golang/protobuf/proto"
+	"github.com/golang/protobuf/ptypes/any"
 	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/encoding"
 	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/entity"
 	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/protocol"
-	"github.com/golang/protobuf/proto"
-	"github.com/golang/protobuf/ptypes/any"
 )
 
 // runner attaches a eventsourced.Context to a stream and runs it.
 type runner struct {
-	stream  entity.EventSourced_HandleServer
+	stream  entity.EventSourcedEntities_HandleServer
 	context *Context
 }
 

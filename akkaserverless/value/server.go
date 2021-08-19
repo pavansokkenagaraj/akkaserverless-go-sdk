@@ -41,7 +41,7 @@ type Server struct {
 	// entities has descriptions of entities registered by service names
 	entities map[ServiceName]*Entity
 
-	entity.UnimplementedValueEntityServer
+	entity.UnimplementedValueEntitiesServer
 }
 
 func NewServer() *Server {
@@ -63,7 +63,7 @@ func (s *Server) Register(e *Entity) error {
 	return nil
 }
 
-func (s *Server) Handle(stream entity.ValueEntity_HandleServer) error {
+func (s *Server) Handle(stream entity.ValueEntities_HandleServer) error {
 	init, err := stream.Recv()
 	if err != nil {
 		return err

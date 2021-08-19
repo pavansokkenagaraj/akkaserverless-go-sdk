@@ -37,7 +37,7 @@ import (
 // - https://github.com/cloudstateio/cloudstate/issues/375#issuecomment-671108797
 //
 // Any error coming not from context.fail, closes the stream, independently if it's a protocol error or an entity error.
-func sendProtocolFailure(e error, s entity.EventSourced_HandleServer) error {
+func sendProtocolFailure(e error, s entity.EventSourcedEntities_HandleServer) error {
 	var commandID int64 = 0
 	var desc = e.Error()
 	var se protocol.ServerError

@@ -36,27 +36,27 @@ import (
 type Akkaserverless struct {
 	grpcServer            *grpc.Server
 	entityDiscoveryServer *discovery.EntityDiscoveryServer
-	eventSourcedServer    *eventsourced.Server
-	crdtServer            *crdt.Server
-	actionServer          *action.Server
+	eventSourcedServer     *eventsourced.Server
+	replicatedEntityServer *crdt.Server
+	actionServer           *action.Server
 	valueServer           *value.Server
 }
 
 // New returns a new Akkaserverless instance.
 func New(c protocol.Config) (*Akkaserverless, error) {
 	cs := &Akkaserverless{
-		grpcServer:            grpc.NewServer(),
-		entityDiscoveryServer: discovery.NewServer(c),
-		eventSourcedServer:    eventsourced.NewServer(),
-		crdtServer:            crdt.NewServer(),
-		actionServer:          action.NewServer(),
-		valueServer:           value.NewServer(),
+		grpcServer:             grpc.NewServer(),
+		entityDiscoveryServer:  discovery.NewServer(c),
+		eventSourcedServer:     eventsourced.NewServer(),
+		replicatedEntityServer: crdt.NewServer(),
+		actionServer:           action.NewServer(),
+		valueServer:            value.NewServer(),
 	}
-	protocol.RegisterEntityDiscoveryServer(cs.grpcServer, cs.entityDiscoveryServer)
-	entity.RegisterEventSourcedServer(cs.grpcServer, cs.eventSourcedServer)
-	entity.RegisterCrdtServer(cs.grpcServer, cs.crdtServer)
-	entity.RegisterValueEntityServer(cs.grpcServer, cs.valueServer)
-	entity.RegisterActionProtocolServer(cs.grpcServer, cs.actionServer)
+	protocol.RegisterDiscoveryServer(cs.grpcServer, cs.entityDiscoveryServer)
+	entity.RegisterEventSourcedEntitiesServer(cs.grpcServer, cs.eventSourcedServer)
+	entity.RegisterValueEntitiesServer(cs.grpcServer, cs.valueServer)
+	action.RegisterActionsServer(cs.grpcServer, cs.actionServer)
+	entity.RegisterReplicatedEntitiesServer(cs.grpcServer, cs.replicatedEntityServer)
 	return cs, nil
 }
 
@@ -75,7 +75,7 @@ func (s *Akkaserverless) RegisterEventSourced(entity *eventsourced.Entity, confi
 // RegisterCRDT registers a CRDT entity.
 func (s *Akkaserverless) RegisterCRDT(entity *crdt.Entity, config protocol.DescriptorConfig, options ...crdt.Option) error {
 	entity.Options(options...)
-	if err := s.crdtServer.Register(entity); err != nil {
+	if err := s.replicatedEntityServer.Register(entity); err != nil {
 		return err
 	}
 	if err := s.entityDiscoveryServer.RegisterCRDTEntity(entity, config); err != nil {

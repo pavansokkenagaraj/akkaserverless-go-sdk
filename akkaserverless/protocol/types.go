@@ -16,6 +16,7 @@
 package protocol
 
 const (
+	EventSourcedEntities = "akkaserverless.component.eventsourcedentity.EventSourcedEntities"
 	EventSourced = "akkaserverless.eventsourced.EventSourced"
 	CRDT         = "akkaserverless.crdt.Crdt"
 	Action       = "akkaserverless.action.ActionProtocol"

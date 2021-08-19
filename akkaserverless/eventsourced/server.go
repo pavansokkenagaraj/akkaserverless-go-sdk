@@ -37,7 +37,7 @@ type Server struct {
 	// entities are indexed by their service name.
 	entities map[ServiceName]*Entity
 
-	entity.UnimplementedEventSourcedServer
+	entity.UnimplementedEventSourcedEntitiesServer
 }
 
 // NewServer returns a new event sourced server.
@@ -81,7 +81,7 @@ func (s *Server) Register(entity *Entity) error {
 // EventSourcedStreamOut_Failure is sent. A protocol failure might provide a command id to
 // be included.
 // TODO: rephrase this to the new atomic failure pattern.
-func (s *Server) Handle(stream entity.EventSourced_HandleServer) error {
+func (s *Server) Handle(stream entity.EventSourcedEntities_HandleServer) error {
 	defer func() {
 		if r := recover(); r != nil {
 			// on a panic we try to tell the proxy and panic again.
@@ -104,7 +104,7 @@ func (s *Server) Handle(stream entity.EventSourced_HandleServer) error {
 	return nil
 }
 
-func (s *Server) handle(stream entity.EventSourced_HandleServer) error {
+func (s *Server) handle(stream entity.EventSourcedEntities_HandleServer) error {
 	first, err := stream.Recv()
 	switch err {
 	case nil:

@@ -24,9 +24,8 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/entity"
-	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/protocol"
 	"github.com/golang/protobuf/proto"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/protocol"
 )
 
 type (
@@ -47,7 +46,7 @@ type Server struct {
 	entities map[ServiceName]*Entity
 
 	// internal marker enforced by go-grpc.
-	entity.UnimplementedActionProtocolServer
+	UnimplementedActionsServer
 }
 
 func NewServer() *Server {
@@ -83,7 +82,7 @@ func (s *Server) entityFor(service ServiceName) (*Entity, error) {
 // service name, command name, request metadata and the command payload. The
 // reply may contain a direct reply, a forward or a failure, and it may contain
 // many side effects.
-func (s *Server) HandleUnary(ctx context.Context, command *entity.ActionCommand) (*entity.ActionResponse, error) {
+func (s *Server) HandleUnary(ctx context.Context, command *ActionCommand) (*ActionResponse, error) {
 	e, err := s.entityFor(ServiceName(command.ServiceName))
 	if err != nil {
 		return nil, err
@@ -128,7 +127,7 @@ func (s *Server) HandleUnary(ctx context.Context, command *entity.ActionCommand)
 //
 // Either the client or the server may cancel the stream at any time,
 // cancellation is indicated through an HTTP2 stream RST message.
-func (s *Server) HandleStreamedIn(stream entity.ActionProtocol_HandleStreamedInServer) error {
+func (s *Server) HandleStreamedIn(stream Actions_HandleStreamedInServer) error {
 	first, err := stream.Recv()
 	if err != nil {
 		return err
@@ -182,7 +181,7 @@ func (s *Server) HandleStreamedIn(stream entity.ActionProtocol_HandleStreamedInS
 //
 // Either the client or the server may cancel the stream at any time,
 // cancellation is indicated through an HTTP2 stream RST message.
-func (s *Server) HandleStreamedOut(command *entity.ActionCommand, stream entity.ActionProtocol_HandleStreamedOutServer) error {
+func (s *Server) HandleStreamedOut(command *ActionCommand, stream Actions_HandleStreamedOutServer) error {
 	e, err := s.entityFor(ServiceName(command.ServiceName))
 	if err != nil {
 		return err
@@ -249,7 +248,7 @@ func (s *Server) HandleStreamedOut(command *entity.ActionCommand, stream entity.
 //
 // Either the client or the server may cancel the stream at any time,
 // cancellation is indicated through an HTTP2 stream RST message.
-func (s *Server) HandleStreamed(stream entity.ActionProtocol_HandleStreamedServer) error {
+func (s *Server) HandleStreamed(stream Actions_HandleStreamedServer) error {
 	first, err := stream.Recv()
 	if err != nil {
 		return err
@@ -306,12 +305,12 @@ func (s *Server) HandleStreamed(stream entity.ActionProtocol_HandleStreamedServe
 
 type runner struct {
 	context  *Context
-	response *entity.ActionResponse
+	response *ActionResponse
 }
 
 // runCommand responds with effects, a response, a forward or a
 // failure using the action.Context passed to the command handler.
-func (r *runner) runCommand(cmd *entity.ActionCommand) error {
+func (r *runner) runCommand(cmd *ActionCommand) error {
 	// unmarshal the commands message
 	msgName := strings.TrimPrefix(cmd.GetPayload().GetTypeUrl(), "type.googleapis.com/")
 	if strings.HasPrefix(msgName, "json.akkaserverless.io/") {
@@ -330,10 +329,10 @@ func (r *runner) runCommand(cmd *entity.ActionCommand) error {
 
 // actionResponse returns an action response depending on the runners
 // current state.
-func (r *runner) actionResponse() (*entity.ActionResponse, error) {
+func (r *runner) actionResponse() (*ActionResponse, error) {
 	if r.context.failure != nil {
-		return &entity.ActionResponse{
-			Response: &entity.ActionResponse_Failure{
+		return &ActionResponse{
+			Response: &ActionResponse_Failure{
 				Failure: &protocol.Failure{
 					Description: r.context.failure.Error(),
 				},
@@ -342,8 +341,8 @@ func (r *runner) actionResponse() (*entity.ActionResponse, error) {
 		}, nil
 	}
 	if r.context.response != nil {
-		return &entity.ActionResponse{
-			Response: &entity.ActionResponse_Reply{
+		return &ActionResponse{
+			Response: &ActionResponse_Reply{
 				Reply: &protocol.Reply{
 					Payload:  r.context.response,
 					Metadata: r.context.command.Metadata,
@@ -354,17 +353,17 @@ func (r *runner) actionResponse() (*entity.ActionResponse, error) {
 	}
 	if r.context.forward != nil {
 		r.context.forward.Metadata = r.context.command.Metadata
-		return &entity.ActionResponse{
-			Response: &entity.ActionResponse_Forward{
+		return &ActionResponse{
+			Response: &ActionResponse_Forward{
 				Forward: r.context.forward,
 			},
 			SideEffects: r.context.sideEffects,
 		}, nil
 	}
 	if len(r.context.sideEffects) > 0 {
-		return &entity.ActionResponse{
+		return &ActionResponse{
 			SideEffects: r.context.sideEffects,
 		}, nil
 	}
-	return &entity.ActionResponse{}, nil
+	return &ActionResponse{}, nil
 }

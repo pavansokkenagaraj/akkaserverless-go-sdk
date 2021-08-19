@@ -18,9 +18,9 @@ package value
 import (
 	"time"
 
-	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/protocol"
 	"github.com/golang/protobuf/proto"
 	"github.com/golang/protobuf/ptypes/any"
+	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/protocol"
 )
 
 type Entity struct {
@@ -31,7 +31,7 @@ type Entity struct {
 	EntityFunc    func(EntityID) EntityHandler
 	PersistenceID string
 
-	PassivationStrategy protocol.EntityPassivationStrategy
+	PassivationStrategy protocol.PassivationStrategy
 }
 
 type Option func(s *Entity)
@@ -44,8 +44,8 @@ func (e *Entity) Options(options ...Option) {
 
 func WithPassivationStrategyTimeout(duration time.Duration) Option {
 	return func(e *Entity) {
-		e.PassivationStrategy = protocol.EntityPassivationStrategy{
-			Strategy: &protocol.EntityPassivationStrategy_Timeout{
+		e.PassivationStrategy = protocol.PassivationStrategy{
+			Strategy: &protocol.PassivationStrategy_Timeout{
 				Timeout: &protocol.TimeoutPassivationStrategy{
 					Timeout: duration.Milliseconds(),
 				},
