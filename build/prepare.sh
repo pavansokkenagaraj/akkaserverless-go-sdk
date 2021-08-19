@@ -20,4 +20,5 @@ function download_protocol {
 # Download and unzip the proxy, sdk and tck protocols to the proto directory
 download_protocol proxy
 download_protocol sdk
-download_protocol tck
+# TODO: WIP - fix later PA1
+#download_protocol tck
