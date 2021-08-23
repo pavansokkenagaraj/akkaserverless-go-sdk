@@ -232,5 +232,5 @@ var Discovery_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "discovery.proto",
+	Metadata: "akkaserverless/protocol/discovery.proto",
 }

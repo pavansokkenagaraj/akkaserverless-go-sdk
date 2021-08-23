@@ -20,9 +20,12 @@ protoc --go_out=paths=source_relative:. \
 
 
 # protoc akkaserverless-proxy-protocol
+protoc --go_out=paths=source_relative:. \
+  --go-grpc_out=paths=source_relative:. \
+  --proto_path=proto/proxy akkaserverless/protocol/discovery.proto
+
 protoc --go_out=paths=source_relative:akkaserverless/protocol \
   --go-grpc_out=paths=source_relative:akkaserverless/protocol \
-  --proto_path=proto/proxy/akkaserverless/protocol discovery.proto \
   --proto_path=proto/proxy/akkaserverless/component component.proto
 
 protoc --go_out=paths=source_relative:akkaserverless/action \
