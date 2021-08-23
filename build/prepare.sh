@@ -13,7 +13,9 @@ function download_protocol {
   local module="$1"
   curl -OL "https://repo1.maven.org/maven2/com/akkaserverless/akkaserverless-$module-protocol/$framework_version/akkaserverless-$module-protocol-$framework_version.zip"
   unzip "akkaserverless-$module-protocol-$framework_version.zip"
-  cp -r "akkaserverless-$module-protocol-$framework_version"/* proto
+
+  mkdir -p proto/"$module"
+  cp -r "akkaserverless-$module-protocol-$framework_version"/* proto/"$module"
   rm -rf "akkaserverless-$module-protocol-$framework_version.zip" "akkaserverless-$module-protocol-$framework_version"
 }
 
