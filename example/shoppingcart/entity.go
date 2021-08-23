@@ -25,7 +25,7 @@ import (
 	domain "github.com/lightbend/akkaserverless-go-sdk/example/shoppingcart/persistence"
 )
 
-// A Cloudstate event sourced entity implementing a shopping cart.
+// A Akkaserverless event sourced entity implementing a shopping cart.
 // tag::entity-type[]
 // tag::entity-state[]
 type ShoppingCart struct {
