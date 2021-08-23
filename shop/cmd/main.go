@@ -6,9 +6,12 @@ import (
 	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/protocol"
 	"github.com/lightbend/akkaserverless-go-sdk/shop"
 	"log"
+	"os"
 )
 
 func main() {
+	os.Setenv("HOST", "localhost")
+	os.Setenv("PORT", "8080")
 	server, err := akkaserverless.New(protocol.Config{
 		ServiceName:    "cloudstate.tck.model.EventSourcedTckModel", // the servicename the proxy gets to know about
 		ServiceVersion: "0.2.0",
@@ -28,9 +31,8 @@ func main() {
 	if err != nil {
 		log.Fatalf("Akkaserverless failed to register entity: %s", err)
 	}
-}
-
-
-func init() {
-	log.SetFlags(log.LstdFlags | log.Lmicroseconds)
+	err = server.Run()
+	if err != nil {
+		log.Fatalf("Akkaserverless failed to run: %v", err)
+	}
 }
