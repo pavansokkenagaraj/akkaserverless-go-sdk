@@ -19,7 +19,17 @@ syntax = "proto3";
 
 package com.example.shoppingcart.persistence;
 
-option go_package = "github.com/cloudstateio/go-support/example/shoppingcart/persistence;persistence";
+option go_package = "github.com/lightbend/akkaserverless-go-sdk/shoppingcart/persistence;persistence";
+
+import "akkaserverless/annotations.proto";
+
+// Describes how this domain relates to an event sourced entity
+option (akkaserverless.file).event_sourced_entity = {
+    name: "ShopCart"
+    entity_type: "eventsourced-shop-cart"
+    state: "Cart"
+    events: ["ItemAdded", "ItemRemoved"]
+};
 
 message LineItem {
     string productId = 1;

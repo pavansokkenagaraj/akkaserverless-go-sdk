@@ -18,6 +18,7 @@ package main
 
 import (
 	"log"
+	"os"
 
 	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless"
 	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/eventsourced"
@@ -28,16 +29,18 @@ import (
 // main creates a Akkaserverless instance and registers the ShoppingCart
 // as a event sourced entity.
 func main() {
+	os.Setenv("HOST", "localhost")
+	os.Setenv("PORT", "8080")
 	server, err := akkaserverless.New(protocol.Config{
 		ServiceName:    "shopping-cart",
 		ServiceVersion: "0.1.0",
 	})
 	if err != nil {
-		log.Fatalf("cloudstate.New failed: %v", err)
+		log.Fatalf("akkaserverless.New failed: %v", err)
 	}
 
 	err = server.RegisterEventSourced(&eventsourced.Entity{
-		ServiceName:   "com.example.shoppingcart.ShoppingCart",
+		ServiceName:   "com.example.shoppingcart.ShoppingCartService",
 		PersistenceID: "ShoppingCart",
 		EntityFunc:    shoppingcart.NewShoppingCart,
 		SnapshotEvery: 5,
