@@ -17,20 +17,16 @@
 package main
 
 import (
-	"log"
-	"os"
-
 	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless"
 	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/eventsourced"
 	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/protocol"
 	"github.com/lightbend/akkaserverless-go-sdk/example/shoppingcart"
+	"log"
 )
 
 // main creates a Akkaserverless instance and registers the ShoppingCart
 // as a event sourced entity.
 func main() {
-	os.Setenv("HOST", "localhost")
-	os.Setenv("PORT", "8080")
 	server, err := akkaserverless.New(protocol.Config{
 		ServiceName:    "shopping-cart",
 		ServiceVersion: "0.1.0",
