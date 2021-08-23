@@ -91,7 +91,7 @@ func main() {
 		EntityFunc:    shoppingcart.NewShoppingCart,
 	}, protocol.DescriptorConfig{
 		Service: "shoppingcart.proto",
-	}.AddDomainDescriptor("domain.proto"))
+	}.AddDomainDescriptor("shopdomain.proto"))
 	// end::register[]
 	if err != nil {
 		log.Fatalf("Akkaserverless failed to register entity: %s", err)
