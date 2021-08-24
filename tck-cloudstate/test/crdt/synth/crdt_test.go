@@ -27,8 +27,8 @@ import (
 	"github.com/lightbend/akkaserverless-go-sdk/example/crdt_shoppingcart/shoppingcart"
 )
 
-// TestCRDT runs the TCK for the CRDT state model.
-// As defined by the Cloudstate specification, each CRDT state model type
+// TestCRDT runs the TCK for the ReplicatedEntities state model.
+// As defined by the Cloudstate specification, each ReplicatedEntities state model type
 // has three state actions CRDTs can emit on state changes.
 // - create
 // - update
@@ -57,7 +57,7 @@ func TestCRDT(t *testing.T) {
 			ProtocolMinorVersion: 1,
 			ProxyName:            "a-proxy",
 			ProxyVersion:         "0.0.0",
-			SupportedEntityTypes: []string{protocol.EventSourced, protocol.CRDT},
+			SupportedEntityTypes: []string{protocol.EventSourced, protocol.ReplicatedEntities},
 		})
 		if err != nil {
 			t.Fatal(err)

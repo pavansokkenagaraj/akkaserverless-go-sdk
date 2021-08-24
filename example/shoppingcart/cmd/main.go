@@ -30,7 +30,7 @@ import (
 func main() {
 	server, err := akkaserverless.New(protocol.Config{
 		ServiceName:    "shopping-cart",
-		ServiceVersion: "0.1.0",
+		ServiceVersion: "0.0.1",
 	})
 	if err != nil {
 		log.Fatalf("akkaserverless.New failed: %v", err)

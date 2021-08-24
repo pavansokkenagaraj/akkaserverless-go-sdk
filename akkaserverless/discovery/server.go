@@ -152,7 +152,7 @@ func (s *EntityDiscoveryServer) RegisterCRDTEntity(entity *crdt.Entity, config p
 		return fmt.Errorf("failed to resolveFileDescriptor for DescriptorConfig: %+v: %w", config, err)
 	}
 	e := &protocol.Component{
-		ComponentType: protocol.CRDT,
+		ComponentType: protocol.ReplicatedEntities,
 		ServiceName:   entity.ServiceName.String(),
 	}
 
@@ -178,7 +178,7 @@ func (s *EntityDiscoveryServer) RegisterActionEntity(entity *action.Entity, conf
 		return fmt.Errorf("failed to resolveFileDescriptor for DescriptorConfig: %+v: %w", config, err)
 	}
 	s.entitySpec.Components = append(s.entitySpec.Components, &protocol.Component{
-		ComponentType: protocol.Action,
+		ComponentType: protocol.Actions,
 		ServiceName:   entity.ServiceName.String(),
 	})
 	return s.updateSpec()
@@ -191,7 +191,7 @@ func (s *EntityDiscoveryServer) RegisterValueEntity(entity *value.Entity, config
 		return fmt.Errorf("failed to resolveFileDescriptor for DescriptorConfig: %+v: %w", config, err)
 	}
 	e := &protocol.Component{
-		ComponentType: protocol.Value,
+		ComponentType: protocol.ValueEntities,
 		ServiceName:   entity.ServiceName.String(),
 	}
 	entitySettings := &protocol.Component_Entity{

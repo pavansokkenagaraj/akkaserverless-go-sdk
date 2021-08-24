@@ -44,7 +44,7 @@ func TestEventsourcingShoppingCart(t *testing.T) {
 		ProtocolMinorVersion: 0,
 		ProxyName:            "a-cs-proxy",
 		ProxyVersion:         "0.0.0",
-		SupportedEntityTypes: []string{protocol.EventSourced, protocol.CRDT},
+		SupportedEntityTypes: []string{protocol.EventSourced, protocol.ReplicatedEntities},
 	})
 	if err != nil {
 		t.Fatal(err)
