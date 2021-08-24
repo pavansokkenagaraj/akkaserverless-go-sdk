@@ -17,11 +17,12 @@
 package main
 
 import (
+	"log"
+
 	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless"
 	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/eventsourced"
 	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/protocol"
 	"github.com/lightbend/akkaserverless-go-sdk/example/shoppingcart"
-	"log"
 )
 
 // main creates a Akkaserverless instance and registers the ShoppingCart
@@ -51,8 +52,4 @@ func main() {
 	if err != nil {
 		log.Fatalf("Akkaserverless failed to run: %v", err)
 	}
-}
-
-func init() {
-	log.SetFlags(log.LstdFlags | log.Lmicroseconds)
 }
