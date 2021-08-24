@@ -17,7 +17,16 @@ syntax = "proto3";
 
 package com.example.valueentity.shoppingcart.persistence;
 
-option go_package = "github.com/cloudstateio/go-support/example/valueentity/persistence;persistence";
+option go_package = "github.com/lightbend/akkaserverless-go-sdk/example/valueentity/persistence;persistence";
+
+import "akkaserverless/annotations.proto";
+
+// Describes how this domain relates to a value entity
+option (akkaserverless.file).value_entity = {
+    name: "ShoppingCart"
+    entity_type: "shopping-cart"
+    state: "Cart"
+};
 
 message LineItem {
     string productId = 1;
