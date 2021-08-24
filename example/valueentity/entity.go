@@ -14,7 +14,7 @@ import (
 	domain "github.com/lightbend/akkaserverless-go-sdk/example/valueentity/persistence"
 )
 
-// A Cloudstate event sourced entity implementing a shopping cart.
+// ShoppingCart is an Akkaserverless value entity implementing a shopping cart.
 type ShoppingCart struct {
 	// our domain object
 	cart []*domain.LineItem
@@ -122,7 +122,7 @@ func (sc *ShoppingCart) find(productID string) (item *domain.LineItem, index int
 	return nil, 0
 }
 
-// remove removes a product from the shopping cart.
+// remove will remove a product from the shopping cart.
 // An ok flag is returned to indicate that the product was present and removed.
 func (sc *ShoppingCart) remove(productID string) (ok bool) {
 	if item, i := sc.find(productID); item != nil {
