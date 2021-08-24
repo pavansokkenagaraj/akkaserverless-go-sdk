@@ -24,7 +24,7 @@ import (
 	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless"
 	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/crdt"
 	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/protocol"
-	crdt2 "github.com/lightbend/akkaserverless-go-sdk/tck/crdt"
+	crdt2 "github.com/lightbend/akkaserverless-go-sdk/tck-cloudstate/crdt"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/test/bufconn"
 )

@@ -17,27 +17,27 @@ package synth
 
 import (
 	"github.com/golang/protobuf/proto"
-	"github.com/lightbend/akkaserverless-go-sdk/tck/crdt"
+	"github.com/lightbend/akkaserverless-go-sdk/tck-cloudstate/crdt"
 )
 
-func lwwRegisterRequest(messages ...proto.Message) *crdt.LWWRegisterRequest {
-	r := &crdt.LWWRegisterRequest{
-		Actions: make([]*crdt.LWWRegisterRequestAction, 0),
+func orsetRequest(messages ...proto.Message) *crdt.ORSetRequest {
+	r := &crdt.ORSetRequest{
+		Actions: make([]*crdt.ORSetRequestAction, 0),
 	}
 	for _, i := range messages {
 		switch t := i.(type) {
 		case *crdt.Get:
 			r.Id = t.Key
-			r.Actions = append(r.Actions, &crdt.LWWRegisterRequestAction{Action: &crdt.LWWRegisterRequestAction_Get{Get: t}})
+			r.Actions = append(r.Actions, &crdt.ORSetRequestAction{Action: &crdt.ORSetRequestAction_Get{Get: t}})
 		case *crdt.Delete:
+			r.Actions = append(r.Actions, &crdt.ORSetRequestAction{Action: &crdt.ORSetRequestAction_Delete{Delete: t}})
 			r.Id = t.Key
-			r.Actions = append(r.Actions, &crdt.LWWRegisterRequestAction{Action: &crdt.LWWRegisterRequestAction_Delete{Delete: t}})
-		case *crdt.LWWRegisterSet:
+		case *crdt.ORSetAdd:
+			r.Actions = append(r.Actions, &crdt.ORSetRequestAction{Action: &crdt.ORSetRequestAction_Add{Add: t}})
 			r.Id = t.Key
-			r.Actions = append(r.Actions, &crdt.LWWRegisterRequestAction{Action: &crdt.LWWRegisterRequestAction_Set{Set: t}})
-		case *crdt.LWWRegisterSetWithClock:
+		case *crdt.ORSetRemove:
+			r.Actions = append(r.Actions, &crdt.ORSetRequestAction{Action: &crdt.ORSetRequestAction_Remove{Remove: t}})
 			r.Id = t.Key
-			r.Actions = append(r.Actions, &crdt.LWWRegisterRequestAction{Action: &crdt.LWWRegisterRequestAction_SetWithClock{SetWithClock: t}})
 		default:
 			panic("no type matched")
 		}

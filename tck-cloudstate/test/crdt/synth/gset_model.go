@@ -17,24 +17,24 @@ package synth
 
 import (
 	"github.com/golang/protobuf/proto"
-	"github.com/lightbend/akkaserverless-go-sdk/tck/crdt"
+	"github.com/lightbend/akkaserverless-go-sdk/tck-cloudstate/crdt"
 )
 
-func voteRequest(messages ...proto.Message) *crdt.VoteRequest {
-	r := &crdt.VoteRequest{
-		Actions: make([]*crdt.VoteRequestAction, 0),
+func gsetRequest(messages ...proto.Message) *crdt.GSetRequest {
+	r := &crdt.GSetRequest{
+		Actions: make([]*crdt.GSetRequestAction, 0),
 	}
 	for _, i := range messages {
 		switch t := i.(type) {
 		case *crdt.Get:
 			r.Id = t.Key
-			r.Actions = append(r.Actions, &crdt.VoteRequestAction{Action: &crdt.VoteRequestAction_Get{Get: t}})
+			r.Actions = append(r.Actions, &crdt.GSetRequestAction{Action: &crdt.GSetRequestAction_Get{Get: t}})
 		case *crdt.Delete:
 			r.Id = t.Key
-			r.Actions = append(r.Actions, &crdt.VoteRequestAction{Action: &crdt.VoteRequestAction_Delete{Delete: t}})
-		case *crdt.VoteVote:
+			r.Actions = append(r.Actions, &crdt.GSetRequestAction{Action: &crdt.GSetRequestAction_Delete{Delete: t}})
+		case *crdt.GSetAdd:
 			r.Id = t.Key
-			r.Actions = append(r.Actions, &crdt.VoteRequestAction{Action: &crdt.VoteRequestAction_Vote{Vote: t}})
+			r.Actions = append(r.Actions, &crdt.GSetRequestAction{Action: &crdt.GSetRequestAction_Add{Add: t}})
 		default:
 			panic("no type matched")
 		}

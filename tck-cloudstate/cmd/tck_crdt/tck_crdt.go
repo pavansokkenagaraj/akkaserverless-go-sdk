@@ -21,7 +21,7 @@ import (
 	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless"
 	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/crdt"
 	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/protocol"
-	tck "github.com/lightbend/akkaserverless-go-sdk/tck/crdt"
+	tck "github.com/lightbend/akkaserverless-go-sdk/tck-cloudstate/crdt"
 )
 
 func main() {

@@ -17,24 +17,24 @@ package synth
 
 import (
 	"github.com/golang/protobuf/proto"
-	"github.com/lightbend/akkaserverless-go-sdk/tck/crdt"
+	"github.com/lightbend/akkaserverless-go-sdk/tck-cloudstate/crdt"
 )
 
-func gsetRequest(messages ...proto.Message) *crdt.GSetRequest {
-	r := &crdt.GSetRequest{
-		Actions: make([]*crdt.GSetRequestAction, 0),
+func flagRequest(messages ...proto.Message) *crdt.FlagRequest {
+	r := &crdt.FlagRequest{
+		Actions: make([]*crdt.FlagRequestAction, 0),
 	}
 	for _, i := range messages {
 		switch t := i.(type) {
 		case *crdt.Get:
 			r.Id = t.Key
-			r.Actions = append(r.Actions, &crdt.GSetRequestAction{Action: &crdt.GSetRequestAction_Get{Get: t}})
+			r.Actions = append(r.Actions, &crdt.FlagRequestAction{Action: &crdt.FlagRequestAction_Get{Get: t}})
 		case *crdt.Delete:
 			r.Id = t.Key
-			r.Actions = append(r.Actions, &crdt.GSetRequestAction{Action: &crdt.GSetRequestAction_Delete{Delete: t}})
-		case *crdt.GSetAdd:
+			r.Actions = append(r.Actions, &crdt.FlagRequestAction{Action: &crdt.FlagRequestAction_Delete{Delete: t}})
+		case *crdt.FlagEnable:
 			r.Id = t.Key
-			r.Actions = append(r.Actions, &crdt.GSetRequestAction{Action: &crdt.GSetRequestAction_Add{Add: t}})
+			r.Actions = append(r.Actions, &crdt.FlagRequestAction{Action: &crdt.FlagRequestAction_Enable{Enable: t}})
 		default:
 			panic("no type matched")
 		}

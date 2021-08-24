@@ -21,7 +21,7 @@ import (
 	"time"
 
 	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/entity"
-	"github.com/lightbend/akkaserverless-go-sdk/tck/crdt"
+	"github.com/lightbend/akkaserverless-go-sdk/tck-cloudstate/crdt"
 )
 
 func TestCRDTFlag(t *testing.T) {

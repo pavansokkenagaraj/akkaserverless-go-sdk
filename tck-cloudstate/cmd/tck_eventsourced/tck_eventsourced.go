@@ -26,11 +26,11 @@ import (
 	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/protocol"
 	"github.com/lightbend/akkaserverless-go-sdk/akkaserverless/value"
 	"github.com/lightbend/akkaserverless-go-sdk/example/shoppingcart"
-	actionTCK "github.com/lightbend/akkaserverless-go-sdk/tck/action"
-	"github.com/lightbend/akkaserverless-go-sdk/tck/crdt2"
-	"github.com/lightbend/akkaserverless-go-sdk/tck/eventlogeventing"
-	tck "github.com/lightbend/akkaserverless-go-sdk/tck/eventsourced"
-	valueentity "github.com/lightbend/akkaserverless-go-sdk/tck/value"
+	actionTCK "github.com/lightbend/akkaserverless-go-sdk/tck-cloudstate/action"
+	"github.com/lightbend/akkaserverless-go-sdk/tck-cloudstate/crdt2"
+	"github.com/lightbend/akkaserverless-go-sdk/tck-cloudstate/eventlogeventing"
+	tck "github.com/lightbend/akkaserverless-go-sdk/tck-cloudstate/eventsourced"
+	valueentity "github.com/lightbend/akkaserverless-go-sdk/tck-cloudstate/value"
 )
 
 // tag::shopping-cart-main[]

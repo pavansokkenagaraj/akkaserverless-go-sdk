@@ -17,27 +17,30 @@ package synth
 
 import (
 	"github.com/golang/protobuf/proto"
-	"github.com/lightbend/akkaserverless-go-sdk/tck/crdt"
+	"github.com/lightbend/akkaserverless-go-sdk/tck-cloudstate/crdt"
 )
 
-func orsetRequest(messages ...proto.Message) *crdt.ORSetRequest {
-	r := &crdt.ORSetRequest{
-		Actions: make([]*crdt.ORSetRequestAction, 0),
+func ormapRequest(messages ...proto.Message) *crdt.ORMapRequest {
+	r := &crdt.ORMapRequest{
+		Actions: make([]*crdt.ORMapRequestAction, 0),
 	}
 	for _, i := range messages {
 		switch t := i.(type) {
 		case *crdt.Get:
 			r.Id = t.Key
-			r.Actions = append(r.Actions, &crdt.ORSetRequestAction{Action: &crdt.ORSetRequestAction_Get{Get: t}})
+			r.Actions = append(r.Actions, &crdt.ORMapRequestAction{Action: &crdt.ORMapRequestAction_Get{Get: t}})
 		case *crdt.Delete:
-			r.Actions = append(r.Actions, &crdt.ORSetRequestAction{Action: &crdt.ORSetRequestAction_Delete{Delete: t}})
 			r.Id = t.Key
-		case *crdt.ORSetAdd:
-			r.Actions = append(r.Actions, &crdt.ORSetRequestAction{Action: &crdt.ORSetRequestAction_Add{Add: t}})
+			r.Actions = append(r.Actions, &crdt.ORMapRequestAction{Action: &crdt.ORMapRequestAction_Delete{Delete: t}})
+		case *crdt.ORMapSet:
 			r.Id = t.Key
-		case *crdt.ORSetRemove:
-			r.Actions = append(r.Actions, &crdt.ORSetRequestAction{Action: &crdt.ORSetRequestAction_Remove{Remove: t}})
+			r.Actions = append(r.Actions, &crdt.ORMapRequestAction{Action: &crdt.ORMapRequestAction_SetKey{SetKey: t}})
+		case *crdt.ORMapDelete:
 			r.Id = t.Key
+			r.Actions = append(r.Actions, &crdt.ORMapRequestAction{Action: &crdt.ORMapRequestAction_DeleteKey{DeleteKey: t}})
+		case *crdt.ORMapActionRequest:
+			r.Id = t.Key
+			r.Actions = append(r.Actions, &crdt.ORMapRequestAction{Action: &crdt.ORMapRequestAction_Request{Request: t}})
 		default:
 			panic("no type matched")
 		}

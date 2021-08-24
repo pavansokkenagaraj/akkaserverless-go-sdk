@@ -17,27 +17,27 @@ package synth
 
 import (
 	"github.com/golang/protobuf/proto"
-	"github.com/lightbend/akkaserverless-go-sdk/tck/crdt"
+	"github.com/lightbend/akkaserverless-go-sdk/tck-cloudstate/crdt"
 )
 
-func pncounterRequest(messages ...proto.Message) *crdt.PNCounterRequest {
-	r := &crdt.PNCounterRequest{
-		Actions: make([]*crdt.PNCounterRequestAction, 0, len(messages)),
+func lwwRegisterRequest(messages ...proto.Message) *crdt.LWWRegisterRequest {
+	r := &crdt.LWWRegisterRequest{
+		Actions: make([]*crdt.LWWRegisterRequestAction, 0),
 	}
 	for _, i := range messages {
 		switch t := i.(type) {
-		case *crdt.PNCounterIncrement:
-			r.Id = t.Key
-			r.Actions = append(r.Actions, &crdt.PNCounterRequestAction{Action: &crdt.PNCounterRequestAction_Increment{Increment: t}})
-		case *crdt.PNCounterDecrement:
-			r.Id = t.Key
-			r.Actions = append(r.Actions, &crdt.PNCounterRequestAction{Action: &crdt.PNCounterRequestAction_Decrement{Decrement: t}})
 		case *crdt.Get:
 			r.Id = t.Key
-			r.Actions = append(r.Actions, &crdt.PNCounterRequestAction{Action: &crdt.PNCounterRequestAction_Get{Get: t}})
+			r.Actions = append(r.Actions, &crdt.LWWRegisterRequestAction{Action: &crdt.LWWRegisterRequestAction_Get{Get: t}})
 		case *crdt.Delete:
 			r.Id = t.Key
-			r.Actions = append(r.Actions, &crdt.PNCounterRequestAction{Action: &crdt.PNCounterRequestAction_Delete{Delete: t}})
+			r.Actions = append(r.Actions, &crdt.LWWRegisterRequestAction{Action: &crdt.LWWRegisterRequestAction_Delete{Delete: t}})
+		case *crdt.LWWRegisterSet:
+			r.Id = t.Key
+			r.Actions = append(r.Actions, &crdt.LWWRegisterRequestAction{Action: &crdt.LWWRegisterRequestAction_Set{Set: t}})
+		case *crdt.LWWRegisterSetWithClock:
+			r.Id = t.Key
+			r.Actions = append(r.Actions, &crdt.LWWRegisterRequestAction{Action: &crdt.LWWRegisterRequestAction_SetWithClock{SetWithClock: t}})
 		default:
 			panic("no type matched")
 		}

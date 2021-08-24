@@ -17,24 +17,24 @@ package synth
 
 import (
 	"github.com/golang/protobuf/proto"
-	"github.com/lightbend/akkaserverless-go-sdk/tck/crdt"
+	"github.com/lightbend/akkaserverless-go-sdk/tck-cloudstate/crdt"
 )
 
-func gcounterRequest(messages ...proto.Message) *crdt.GCounterRequest {
-	r := &crdt.GCounterRequest{
-		Actions: make([]*crdt.GCounterRequestAction, 0),
+func voteRequest(messages ...proto.Message) *crdt.VoteRequest {
+	r := &crdt.VoteRequest{
+		Actions: make([]*crdt.VoteRequestAction, 0),
 	}
 	for _, i := range messages {
 		switch t := i.(type) {
 		case *crdt.Get:
 			r.Id = t.Key
-			r.Actions = append(r.Actions, &crdt.GCounterRequestAction{Action: &crdt.GCounterRequestAction_Get{Get: t}})
+			r.Actions = append(r.Actions, &crdt.VoteRequestAction{Action: &crdt.VoteRequestAction_Get{Get: t}})
 		case *crdt.Delete:
 			r.Id = t.Key
-			r.Actions = append(r.Actions, &crdt.GCounterRequestAction{Action: &crdt.GCounterRequestAction_Delete{Delete: t}})
-		case *crdt.GCounterIncrement:
+			r.Actions = append(r.Actions, &crdt.VoteRequestAction{Action: &crdt.VoteRequestAction_Delete{Delete: t}})
+		case *crdt.VoteVote:
 			r.Id = t.Key
-			r.Actions = append(r.Actions, &crdt.GCounterRequestAction{Action: &crdt.GCounterRequestAction_Increment{Increment: t}})
+			r.Actions = append(r.Actions, &crdt.VoteRequestAction{Action: &crdt.VoteRequestAction_Vote{Vote: t}})
 		default:
 			panic("no type matched")
 		}
