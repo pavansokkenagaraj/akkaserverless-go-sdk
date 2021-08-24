@@ -4,201 +4,205 @@ package valueentity
 
 import (
 	context "context"
-	empty "github.com/golang/protobuf/ptypes/empty"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
+// Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// ShoppingCartClient is the client API for ShoppingCart service.
+// ShoppingCartServiceClient is the client API for ShoppingCartService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type ShoppingCartClient interface {
-	AddItem(ctx context.Context, in *AddLineItem, opts ...grpc.CallOption) (*empty.Empty, error)
-	RemoveItem(ctx context.Context, in *RemoveLineItem, opts ...grpc.CallOption) (*empty.Empty, error)
+type ShoppingCartServiceClient interface {
+	AddItem(ctx context.Context, in *AddLineItem, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	RemoveItem(ctx context.Context, in *RemoveLineItem, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	GetCart(ctx context.Context, in *GetShoppingCart, opts ...grpc.CallOption) (*Cart, error)
-	RemoveCart(ctx context.Context, in *RemoveShoppingCart, opts ...grpc.CallOption) (*empty.Empty, error)
+	RemoveCart(ctx context.Context, in *RemoveShoppingCart, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
-type shoppingCartClient struct {
+type shoppingCartServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewShoppingCartClient(cc grpc.ClientConnInterface) ShoppingCartClient {
-	return &shoppingCartClient{cc}
+func NewShoppingCartServiceClient(cc grpc.ClientConnInterface) ShoppingCartServiceClient {
+	return &shoppingCartServiceClient{cc}
 }
 
-func (c *shoppingCartClient) AddItem(ctx context.Context, in *AddLineItem, opts ...grpc.CallOption) (*empty.Empty, error) {
-	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/com.example.valueentity.shoppingcart.ShoppingCart/AddItem", in, out, opts...)
+func (c *shoppingCartServiceClient) AddItem(ctx context.Context, in *AddLineItem, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, "/com.example.valueentity.shoppingcart.ShoppingCartService/AddItem", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *shoppingCartClient) RemoveItem(ctx context.Context, in *RemoveLineItem, opts ...grpc.CallOption) (*empty.Empty, error) {
-	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/com.example.valueentity.shoppingcart.ShoppingCart/RemoveItem", in, out, opts...)
+func (c *shoppingCartServiceClient) RemoveItem(ctx context.Context, in *RemoveLineItem, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, "/com.example.valueentity.shoppingcart.ShoppingCartService/RemoveItem", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *shoppingCartClient) GetCart(ctx context.Context, in *GetShoppingCart, opts ...grpc.CallOption) (*Cart, error) {
+func (c *shoppingCartServiceClient) GetCart(ctx context.Context, in *GetShoppingCart, opts ...grpc.CallOption) (*Cart, error) {
 	out := new(Cart)
-	err := c.cc.Invoke(ctx, "/com.example.valueentity.shoppingcart.ShoppingCart/GetCart", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/com.example.valueentity.shoppingcart.ShoppingCartService/GetCart", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *shoppingCartClient) RemoveCart(ctx context.Context, in *RemoveShoppingCart, opts ...grpc.CallOption) (*empty.Empty, error) {
-	out := new(empty.Empty)
-	err := c.cc.Invoke(ctx, "/com.example.valueentity.shoppingcart.ShoppingCart/RemoveCart", in, out, opts...)
+func (c *shoppingCartServiceClient) RemoveCart(ctx context.Context, in *RemoveShoppingCart, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, "/com.example.valueentity.shoppingcart.ShoppingCartService/RemoveCart", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// ShoppingCartServer is the server API for ShoppingCart service.
-// All implementations must embed UnimplementedShoppingCartServer
+// ShoppingCartServiceServer is the server API for ShoppingCartService service.
+// All implementations must embed UnimplementedShoppingCartServiceServer
 // for forward compatibility
-type ShoppingCartServer interface {
-	AddItem(context.Context, *AddLineItem) (*empty.Empty, error)
-	RemoveItem(context.Context, *RemoveLineItem) (*empty.Empty, error)
+type ShoppingCartServiceServer interface {
+	AddItem(context.Context, *AddLineItem) (*emptypb.Empty, error)
+	RemoveItem(context.Context, *RemoveLineItem) (*emptypb.Empty, error)
 	GetCart(context.Context, *GetShoppingCart) (*Cart, error)
-	RemoveCart(context.Context, *RemoveShoppingCart) (*empty.Empty, error)
-	mustEmbedUnimplementedShoppingCartServer()
+	RemoveCart(context.Context, *RemoveShoppingCart) (*emptypb.Empty, error)
+	mustEmbedUnimplementedShoppingCartServiceServer()
 }
 
-// UnimplementedShoppingCartServer must be embedded to have forward compatible implementations.
-type UnimplementedShoppingCartServer struct {
+// UnimplementedShoppingCartServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedShoppingCartServiceServer struct {
 }
 
-func (UnimplementedShoppingCartServer) AddItem(context.Context, *AddLineItem) (*empty.Empty, error) {
+func (UnimplementedShoppingCartServiceServer) AddItem(context.Context, *AddLineItem) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddItem not implemented")
 }
-func (UnimplementedShoppingCartServer) RemoveItem(context.Context, *RemoveLineItem) (*empty.Empty, error) {
+func (UnimplementedShoppingCartServiceServer) RemoveItem(context.Context, *RemoveLineItem) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveItem not implemented")
 }
-func (UnimplementedShoppingCartServer) GetCart(context.Context, *GetShoppingCart) (*Cart, error) {
+func (UnimplementedShoppingCartServiceServer) GetCart(context.Context, *GetShoppingCart) (*Cart, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCart not implemented")
 }
-func (UnimplementedShoppingCartServer) RemoveCart(context.Context, *RemoveShoppingCart) (*empty.Empty, error) {
+func (UnimplementedShoppingCartServiceServer) RemoveCart(context.Context, *RemoveShoppingCart) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveCart not implemented")
 }
-func (UnimplementedShoppingCartServer) mustEmbedUnimplementedShoppingCartServer() {}
+func (UnimplementedShoppingCartServiceServer) mustEmbedUnimplementedShoppingCartServiceServer() {}
 
-// UnsafeShoppingCartServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to ShoppingCartServer will
+// UnsafeShoppingCartServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to ShoppingCartServiceServer will
 // result in compilation errors.
-type UnsafeShoppingCartServer interface {
-	mustEmbedUnimplementedShoppingCartServer()
+type UnsafeShoppingCartServiceServer interface {
+	mustEmbedUnimplementedShoppingCartServiceServer()
 }
 
-func RegisterShoppingCartServer(s grpc.ServiceRegistrar, srv ShoppingCartServer) {
-	s.RegisterService(&_ShoppingCart_serviceDesc, srv)
+func RegisterShoppingCartServiceServer(s grpc.ServiceRegistrar, srv ShoppingCartServiceServer) {
+	s.RegisterService(&ShoppingCartService_ServiceDesc, srv)
 }
 
-func _ShoppingCart_AddItem_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ShoppingCartService_AddItem_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AddLineItem)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ShoppingCartServer).AddItem(ctx, in)
+		return srv.(ShoppingCartServiceServer).AddItem(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/com.example.valueentity.shoppingcart.ShoppingCart/AddItem",
+		FullMethod: "/com.example.valueentity.shoppingcart.ShoppingCartService/AddItem",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ShoppingCartServer).AddItem(ctx, req.(*AddLineItem))
+		return srv.(ShoppingCartServiceServer).AddItem(ctx, req.(*AddLineItem))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ShoppingCart_RemoveItem_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ShoppingCartService_RemoveItem_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RemoveLineItem)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ShoppingCartServer).RemoveItem(ctx, in)
+		return srv.(ShoppingCartServiceServer).RemoveItem(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/com.example.valueentity.shoppingcart.ShoppingCart/RemoveItem",
+		FullMethod: "/com.example.valueentity.shoppingcart.ShoppingCartService/RemoveItem",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ShoppingCartServer).RemoveItem(ctx, req.(*RemoveLineItem))
+		return srv.(ShoppingCartServiceServer).RemoveItem(ctx, req.(*RemoveLineItem))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ShoppingCart_GetCart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ShoppingCartService_GetCart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetShoppingCart)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ShoppingCartServer).GetCart(ctx, in)
+		return srv.(ShoppingCartServiceServer).GetCart(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/com.example.valueentity.shoppingcart.ShoppingCart/GetCart",
+		FullMethod: "/com.example.valueentity.shoppingcart.ShoppingCartService/GetCart",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ShoppingCartServer).GetCart(ctx, req.(*GetShoppingCart))
+		return srv.(ShoppingCartServiceServer).GetCart(ctx, req.(*GetShoppingCart))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ShoppingCart_RemoveCart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ShoppingCartService_RemoveCart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RemoveShoppingCart)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ShoppingCartServer).RemoveCart(ctx, in)
+		return srv.(ShoppingCartServiceServer).RemoveCart(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/com.example.valueentity.shoppingcart.ShoppingCart/RemoveCart",
+		FullMethod: "/com.example.valueentity.shoppingcart.ShoppingCartService/RemoveCart",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ShoppingCartServer).RemoveCart(ctx, req.(*RemoveShoppingCart))
+		return srv.(ShoppingCartServiceServer).RemoveCart(ctx, req.(*RemoveShoppingCart))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-var _ShoppingCart_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "com.example.valueentity.shoppingcart.ShoppingCart",
-	HandlerType: (*ShoppingCartServer)(nil),
+// ShoppingCartService_ServiceDesc is the grpc.ServiceDesc for ShoppingCartService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var ShoppingCartService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "com.example.valueentity.shoppingcart.ShoppingCartService",
+	HandlerType: (*ShoppingCartServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "AddItem",
-			Handler:    _ShoppingCart_AddItem_Handler,
+			Handler:    _ShoppingCartService_AddItem_Handler,
 		},
 		{
 			MethodName: "RemoveItem",
-			Handler:    _ShoppingCart_RemoveItem_Handler,
+			Handler:    _ShoppingCartService_RemoveItem_Handler,
 		},
 		{
 			MethodName: "GetCart",
-			Handler:    _ShoppingCart_GetCart_Handler,
+			Handler:    _ShoppingCartService_GetCart_Handler,
 		},
 		{
 			MethodName: "RemoveCart",
-			Handler:    _ShoppingCart_RemoveCart_Handler,
+			Handler:    _ShoppingCartService_RemoveCart_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

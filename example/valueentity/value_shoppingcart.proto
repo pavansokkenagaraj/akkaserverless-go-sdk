@@ -24,7 +24,7 @@ syntax = "proto3";
 
 package com.example.valueentity.shoppingcart;
 
-option go_package = "github.com/lightbend/akkaserverless-go-sdk/example/valueentity/persistence;persistence";
+option go_package = "github.com/lightbend/akkaserverless-go-sdk/example/valueentity;valueentity";
 
 import "google/protobuf/empty.proto";
 import "akkaserverless/annotations.proto";
